@@ -1,64 +1,70 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import task.Task;
+import task.*;
 
 public class Duke {
 
     private ArrayList<Task> taskLst = new ArrayList<>();
 
-    public void printLine() {
-        System.out.println("    ____________________________________________________________");
-    }
-
     public void greet() {
-        printLine();
-        String logo = "      ____        _        \n"
+
+        String intro = "      ____        _        \n"
                 + "     |  _ \\ _   _| | _____ \n"
                 + "     | | | | | | | |/ / _ \\\n"
                 + "     | |_| | |_| |   <  __/\n"
                 + "     |____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(logo);
-        System.out.println("    Hello! I'm Bobby");
-        System.out.println("    What can I do for you?");
-        printLine();
-        System.out.println();
+        intro += "    Hello! I'm Bobby\n";
+        intro += "    What can I do for you?\n";
+        echo(intro);
     }
 
-    public void echo(String userInput) {
-        printLine();
-        System.out.println(userInput);
-        printLine();
-        System.out.println();
+    public void echo(String data) {
+        String line = "    ____________________________________________________________\n";
+        String toDisplay = line + data + line;
+        System.out.println(toDisplay);
     }
 
     public void exit() {
-        printLine();
-        System.out.println("    Bye. Hope to see you again soon!");
-        printLine();
-        System.out.println();
+        echo("    Bye. Hope to see you again soon!");
     }
 
     public void addToList(String data) {
+        Task task = null;
         try {
-            this.taskLst.add(new Task(data));
+            String type = (data.startsWith("todo")
+                    ? "T" : (data.startsWith("deadline")
+                    ? "D" : "E"));
+
+            if (type.equals("T")) {
+                task = new ToDo(data);
+            } else if (type.equals("D")) {
+                String desc = extractStr(data, "deadline ", "/");
+                String date = extractStr(data,"by ", null);
+                task = new DeadLine(desc, date);
+            } else {
+                String desc = extractStr(data, "event ", "/");
+                String date = extractStr(data,"at ", null);
+                task = new Event(desc, date);
+            }
+
+            this.taskLst.add(task);
+
         } catch (Exception e) {
             System.out.println("    Exception occurred");
         }
-        echo("     added: " + data);
+        String output = "     Got it. I've added this task:\n";
+        output += "       " + task.toString() + "\n";
+        output += "     Now you have " + this.taskLst.size() +" tasks in the list.\n";
+        echo(output);
     }
 
     public void displayList() {
         String output = "     Here are the tasks in your list:\n";
         int numItemsLst = this.taskLst.size();
         for (int i=0; i < numItemsLst; i++) {
-            output += "     " + (i + 1) + "." + this.taskLst.get(i).toString();
-            if (i != numItemsLst - 1) {
-                output += "\n";
-            }
+            output += "     " + (i + 1) + "." + this.taskLst.get(i).toString() + "\n";
         }
-        printLine();
-        System.out.println(output);
-        printLine();
+        echo(output);
     }
 
     public Task retrieveTask(int i) {
@@ -70,13 +76,11 @@ public class Duke {
             System.exit(1);
         }
         return selectedTask;
-
     }
 
     public void markOrUnmarked(String action, int i) {
         String output = "";
 
-        // Need to check for valid value -> could be out of index
         Task selectedTask = retrieveTask(i);
 
         if (action.equals("mark")) {
@@ -87,8 +91,17 @@ public class Duke {
             output += "     OK, I've marked this task as not done yet:\n";
             selectedTask.undoDone();
         }
-        output += "       " + selectedTask.toString();
-        System.out.println(output);
+        output += "       " + selectedTask.toString() + "\n";
+        echo(output);
+    }
+
+    public String extractStr(String data, String start, String end) {
+        int startIndex = data.indexOf(start) + start.length();
+        if (end == null) {
+            return data.substring(startIndex);
+        } else {
+            return data.substring(startIndex, data.indexOf(end));
+        }
     }
 
     public static void main(String[] args) {
@@ -114,6 +127,5 @@ public class Duke {
 
         bobby.exit();
         sc.close();
-
     }
 }

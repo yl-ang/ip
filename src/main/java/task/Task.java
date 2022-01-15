@@ -4,8 +4,8 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
-        this.description = description;
+    public Task(String data) {
+        this.description = data;
         this.isDone = false;
     }
 

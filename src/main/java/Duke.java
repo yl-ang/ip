@@ -25,7 +25,7 @@ public class Duke {
     }
 
     public void exit() {
-        echo("    Bye. Hope to see you again soon!");
+        echo("    Bye. Hope to see you again soon!\n");
     }
 
     public void addToList(String data) {

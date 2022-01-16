@@ -87,6 +87,18 @@ public class Duke {
         echo(output);
     }
 
+    public void deleteTask(int i) throws DukeException {
+
+        String output = "";
+        Task toDel = retrieveTask(i);
+
+        this.taskLst.remove(i - 1);
+        output += "     Noted. I've removed this task:\n";
+        output += "       " + toDel.toString();
+        output += "     Now you have " + this.taskLst.size() +" tasks in the list.\n";
+        echo(output);
+    }
+
     public void displayList() {
         String output = "     Here are the tasks in your list:\n";
         int numItemsLst = this.taskLst.size();
@@ -148,6 +160,8 @@ public class Duke {
                     bobby.markOrUnmarked("mark", Integer.parseInt(input.substring(5)));
                 } else if (input.startsWith("unmark")) {
                     bobby.markOrUnmarked("unmark", Integer.parseInt(input.substring(7)));
+                } else if (input.startsWith("delete")) {
+                    bobby.deleteTask(Integer.parseInt(input.substring(7)));
                 } else {
                     bobby.addToList(input);
                 }

@@ -1,4 +1,5 @@
 import errorHandle.DukeException;
+import errorHandle.ErrorString;
 import java.util.ArrayList;
 import java.util.Scanner;
 import task.DeadLine;
@@ -33,69 +34,85 @@ public class Duke {
         echo("    Bye. Hope to see you again soon!\n");
     }
 
+
+    public String extractDesc(String data, String start, String timeCommand) {
+
+        int startIndex = data.indexOf(start) + start.length();
+        if (timeCommand == null) {
+            return data.substring(startIndex);
+        } else {
+            int endIndex = data.indexOf(timeCommand);
+            return data.substring(startIndex, endIndex);
+        }
+    }
+
+    public String extractTime(String data, String timeCommand) {
+        int startIndex = data.indexOf(timeCommand) + timeCommand.length();
+        return data.substring(startIndex);
+
+    }
+
     public void addToList(String data) throws DukeException {
         Task task = null;
 
-        String type = (data.startsWith("todo")
-                ? "T" : (data.startsWith("deadline")
-                ? "D" : (data.startsWith("event"))
-                ? "E" : "error"));
+        String[] temp = data.split(" ");
 
-        if (type.equals("T")) {
-            String desc = extractStr(data, "todo ", null);
-            if (desc.length() == 0) {
-                throw new DukeException("     ☹ OOPS!!! The description of a todo cannot be empty.\n");
+        if (data.startsWith("todo")) {
+
+            if (temp.length == 1) {
+                throw new DukeException(ErrorString.ERROR_EMPTY_TODO_DESC.toString());
             }
+
+            String desc = extractDesc(data, "todo ", null);
             task = new ToDo(desc);
-        } else if (type.equals("D")) {
 
-            String desc = extractStr(data, "deadline ", "/");
-            String date = extractStr(data,"by ", null);
+        } else if (data.startsWith("deadline")) {
 
-            if (desc.length() == 0) {
-                throw new DukeException("     ☹ OOPS!!! The description of a deadline cannot be empty.\n");
+            if ((temp.length == 1)) {
+                throw new DukeException(ErrorString.ERROR_EMPTY_DEADLINE_DESC.toString());
             }
 
-            if (date.length() == 0) {
-                throw new DukeException("     ☹ OOPS!!! The date of a deadline cannot be empty.\n");
+            if (!data.contains("/by")) {
+                throw new DukeException(ErrorString.ERROR_EMPTY_DEADLINE_DATE.toString());
             }
 
+            String desc = extractDesc(data, "deadline ", "/by");
+            String date = extractTime(data,"/by ");
             task = new DeadLine(desc, date);
-        } else if (type.equals("E")) {
 
-            String desc = extractStr(data, "event ", "/");
-            String date = extractStr(data,"at ", null);
+        }  else if (data.startsWith("event")) {
+
+            // Event handling
+
+            if ((temp.length == 1)) {
+                throw new DukeException(ErrorString.ERROR_EMPTY_EVENT_DESC.toString());
+            }
+
+            if (!data.contains("/at")) {
+                throw new DukeException(ErrorString.ERROR_EMPTY_EVENT_DATE.toString());
+            }
+
+            String desc = extractDesc(data, "event ", "/at");
+            String date = extractTime(data,"/at ");
             task = new Event(desc, date);
 
-            if (desc.length() == 0) {
-                throw new DukeException("     ☹ OOPS!!! The description of an event cannot be empty.\n");
-            }
-
-            if (date.length() == 0) {
-                throw new DukeException("     ☹ OOPS!!! The date of an event cannot be empty.\n");
-            }
-
         } else {
-            throw new DukeException("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+            throw new DukeException(ErrorString.ERROR_INVALID_COMMAND.toString());
         }
 
+        // Adding task
         this.taskLst.add(task);
-
-        String output = "     Got it. I've added this task:\n";
-        output += "       " + task.toString() + "\n";
-        output += "     Now you have " + this.taskLst.size() +" tasks in the list.\n";
+        String output = String.format("     Got it. I've added this task:\n       %s\n     "
+                + "Now you have %s tasks in the list.\n", task.toString(), taskLst.size());
         echo(output);
     }
 
     public void deleteTask(int i) throws DukeException {
-
-        String output = "";
         Task toDel = retrieveTask(i);
 
         this.taskLst.remove(i - 1);
-        output += "     Noted. I've removed this task:\n";
-        output += "       " + toDel.toString();
-        output += "     Now you have " + this.taskLst.size() +" tasks in the list.\n";
+        String output = String.format("     Noted. I've removed this task:\n       %s\n     "
+                + "Now you have %s tasks in the list.\n", toDel.toString(), taskLst.size());
         echo(output);
     }
 
@@ -113,7 +130,7 @@ public class Duke {
         try {
             selectedTask = this.taskLst.get(i - 1);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("     ☹ OOPS!!! The task number you specify is invalid.\n");
+            throw new DukeException(ErrorString.ERROR_INDEX_OUT_OF_BOUND_TASK.toString());
         }
         return selectedTask;
     }
@@ -135,15 +152,6 @@ public class Duke {
         echo(output);
     }
 
-    public String extractStr(String data, String start, String end) {
-        int startIndex = data.indexOf(start) + start.length();
-        if (end == null) {
-            return data.substring(startIndex);
-        } else {
-            return data.substring(startIndex, data.indexOf(end));
-        }
-    }
-
     public static void main(String[] args) {
 
         Duke bobby = new Duke();
@@ -157,11 +165,11 @@ public class Duke {
                 if (input.equals("list")) {
                     bobby.displayList();
                 } else if (input.startsWith("mark")) {
-                    bobby.markOrUnmarked("mark", Integer.parseInt(input.substring(5)));
+                    bobby.markOrUnmarked("mark", Integer.parseInt(input.substring("mark".length() + 1)));
                 } else if (input.startsWith("unmark")) {
-                    bobby.markOrUnmarked("unmark", Integer.parseInt(input.substring(7)));
+                    bobby.markOrUnmarked("unmark", Integer.parseInt(input.substring("unmark".length() + 1)));
                 } else if (input.startsWith("delete")) {
-                    bobby.deleteTask(Integer.parseInt(input.substring(7)));
+                    bobby.deleteTask(Integer.parseInt(input.substring("delete".length() + 1)));
                 } else {
                     bobby.addToList(input);
                 }

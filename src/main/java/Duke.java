@@ -135,8 +135,26 @@ public class Duke {
         return selectedTask;
     }
 
-    public void markOrUnmarked(String action, int i) {
+    public void markOrUnmarked(String action, String input) throws DukeException {
         String output = "";
+
+        Integer i = null;
+        try {
+            // Also can check if user specify an int or char
+            i = Integer.parseInt(input.substring(action.length() + 1));
+        } catch (IndexOutOfBoundsException e) {
+            if (action.equals("mark")) {
+                throw new DukeException(ErrorString.ERROR_EMPTY_MARK_INT.toString());
+            } else {
+                throw new DukeException(ErrorString.ERROR_EMPTY_UNMARKED_INT.toString());
+            }
+        } catch (NumberFormatException e) {
+            if (action.equals("mark")) {
+                throw new DukeException(ErrorString.ERROR_NOT_INT_MARK.toString());
+            } else {
+                throw new DukeException(ErrorString.ERROR_NOT_INT_UNMARKED.toString());
+            }
+        }
 
         Task selectedTask = retrieveTask(i);
 
@@ -165,9 +183,9 @@ public class Duke {
                 if (input.equals("list")) {
                     bobby.displayList();
                 } else if (input.startsWith("mark")) {
-                    bobby.markOrUnmarked("mark", Integer.parseInt(input.substring("mark".length() + 1)));
+                    bobby.markOrUnmarked("mark", input);
                 } else if (input.startsWith("unmark")) {
-                    bobby.markOrUnmarked("unmark", Integer.parseInt(input.substring("unmark".length() + 1)));
+                    bobby.markOrUnmarked("unmark",input);
                 } else if (input.startsWith("delete")) {
                     bobby.deleteTask(Integer.parseInt(input.substring("delete".length() + 1)));
                 } else {

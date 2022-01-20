@@ -107,10 +107,17 @@ public class Duke {
         echo(output);
     }
 
-    public void deleteTask(int i) throws DukeException {
+    public void deleteTask(String input) throws DukeException {
+        Integer i = null;
+
+        try {
+            i = Integer.parseInt(input.substring("delete".length() + 1));
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(ErrorString.ERROR_EMPTY_DELETE.toString());
+        }
+
         Task toDel = retrieveTask(i);
 
-        this.taskLst.remove(i - 1);
         String output = String.format("     Noted. I've removed this task:\n       %s\n     "
                 + "Now you have %s tasks in the list.\n", toDel.toString(), taskLst.size());
         echo(output);
@@ -187,7 +194,7 @@ public class Duke {
                 } else if (input.startsWith("unmark")) {
                     bobby.markOrUnmarked("unmark",input);
                 } else if (input.startsWith("delete")) {
-                    bobby.deleteTask(Integer.parseInt(input.substring("delete".length() + 1)));
+                    bobby.deleteTask(input);
                 } else {
                     bobby.addToList(input);
                 }

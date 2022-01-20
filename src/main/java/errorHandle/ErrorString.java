@@ -13,7 +13,9 @@ public enum ErrorString {
     ERROR_EMPTY_UNMARKED_INT("     ☹ OOPS!!! Please specify a task number for me to unmark.\n"),
     ERROR_NOT_INT_MARK("     ☹ OOPS!!! The task number you specify for me to mark\n     is invalid.\n"),
     ERROR_NOT_INT_UNMARKED("     ☹ OOPS!!! The task number you specify for me to unmark\n     is invalid.\n"),
-    ERROR_EMPTY_DELETE("     ☹ OOPS!!! Please specify a task number for me to delete.\n");
+    ERROR_EMPTY_DELETE("     ☹ OOPS!!! Please specify a task number for me to delete.\n"),
+    ERROR_TASK_MARKED_ALREADY("     ☹ OOPS!!! Task is already marked.\n"),
+    ERROR_TASK_UNMARKED_ALREADY("     ☹ OOPS!!! Task is already unmarked.\n");
 
     private String errorString;
 

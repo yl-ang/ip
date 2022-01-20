@@ -1,4 +1,6 @@
 package task;
+import errorHandle.DukeException;
+import errorHandle.ErrorString;
 
 public class Task {
     protected String description;
@@ -13,12 +15,22 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
-    public void markAsDone() {
-        this.isDone = true;
+    public void markAsDone() throws DukeException {
+
+        if (this.isDone == false) {
+            this.isDone = true;
+        } else {
+            throw new DukeException(ErrorString.ERROR_TASK_MARKED_ALREADY.toString());
+        }
     }
 
     public void undoDone() {
-        this.isDone = false;
+
+        if (this.isDone == true) {
+            this.isDone = false;
+        } else {
+            throw new DukeException(ErrorString.ERROR_TASK_UNMARKED_ALREADY.toString());
+        }
     }
 
     @Override

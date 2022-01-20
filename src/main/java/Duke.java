@@ -68,7 +68,7 @@ public class Duke {
 
         } else if (data.startsWith("deadline")) {
 
-            if ((temp.length == 1)) {
+            if ((temp.length == 1) || (temp[1].equals("/by"))) {
                 throw new DukeException(ErrorString.ERROR_EMPTY_DEADLINE_DESC.toString());
             }
 
@@ -84,7 +84,7 @@ public class Duke {
 
             // Event handling
 
-            if ((temp.length == 1)) {
+            if ((temp.length == 1) || (temp[1].equals("/at"))) {
                 throw new DukeException(ErrorString.ERROR_EMPTY_EVENT_DESC.toString());
             }
 

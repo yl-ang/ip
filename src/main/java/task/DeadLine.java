@@ -1,15 +1,24 @@
 package task;
 
+import errorHandle.DukeException;
+import errorHandle.ErrorString;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class DeadLine extends Task {
 
     protected LocalDate by;
 
-    public DeadLine(String description,String date) {
+    public DeadLine(String description,String date) throws DukeException {
         super(description);
-        this.by = LocalDate.parse(date);
+
+        try {
+            this.by = LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(ErrorString.ERROR_INVALID_DEADLINE_DATE_FORMAT.toString());
+        }
     }
 
     @Override

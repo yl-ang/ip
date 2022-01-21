@@ -1,5 +1,6 @@
 import errorHandle.DukeException;
 import errorHandle.ErrorString;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,12 +55,12 @@ public class Duke {
 
     }
 
-    public void addToList(String data) throws DukeException {
+    public void addToList(String data, String taskCommand) throws DukeException {
         Task task = null;
 
         String[] temp = data.split(" ");
 
-        if (data.startsWith("todo")) {
+        if (taskCommand.equals("todo")) {
 
             if (temp.length == 1) {
                 throw new DukeException(ErrorString.ERROR_EMPTY_TODO_DESC.toString());
@@ -68,7 +69,7 @@ public class Duke {
             String desc = extractDesc(data, "todo ", null);
             task = new ToDo(desc);
 
-        } else if (data.startsWith("deadline")) {
+        } else if (taskCommand.equals("deadline")) {
 
             if ((temp.length == 1) || (temp[1].equals("/by"))) {
                 throw new DukeException(ErrorString.ERROR_EMPTY_DEADLINE_DESC.toString());
@@ -82,7 +83,7 @@ public class Duke {
             String date = extractTime(data,"/by ");
             task = new DeadLine(desc, date);
 
-        }  else if (data.startsWith("event")) {
+        }  else {
 
             // Event handling
 
@@ -98,8 +99,6 @@ public class Duke {
             String date = extractTime(data,"/at ");
             task = new Event(desc, date);
 
-        } else {
-            throw new DukeException(ErrorString.ERROR_INVALID_COMMAND.toString());
         }
 
         // Adding task
@@ -107,6 +106,7 @@ public class Duke {
         String output = String.format("     Got it. I've added this task:\n       %s\n     "
                 + "Now you have %s tasks in the list.\n", task.toString(), taskLst.size());
         echo(output);
+        save();
     }
 
     public void deleteTask(String input) throws DukeException {
@@ -124,6 +124,7 @@ public class Duke {
         String output = String.format("     Noted. I've removed this task:\n       %s\n     "
                 + "Now you have %s tasks in the list.\n", toDel.toString(), taskLst.size());
         echo(output);
+        save();
     }
 
     public void displayList() {
@@ -178,13 +179,20 @@ public class Duke {
         }
         output += "       " + selectedTask.toString() + "\n";
         echo(output);
+        save();
     }
 
     public void save() throws DukeException {
         // only invoke when task list is changed
+
+        File dir = new File("data");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
         FileWriter myWriter = null;
         try {
-            myWriter = new FileWriter("out/duke.txt");
+            myWriter = new FileWriter("data/duke.txt");
 
             String output = "";
             int numItemsLst = this.taskLst.size();
@@ -195,10 +203,12 @@ public class Duke {
             myWriter.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            // This handling need to be improved
+            throw new DukeException(ErrorString.ERROR_FILE_IO_ERROR.toString());
         }
     }
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws DukeException {
 
         Duke bobby = new Duke();
         bobby.greet();
@@ -216,8 +226,14 @@ public class Duke {
                     bobby.markOrUnmarked("unmark",input);
                 } else if (input.startsWith("delete")) {
                     bobby.deleteTask(input);
+                } else if (input.startsWith("todo")) {
+                    bobby.addToList(input, "todo");
+                } else if (input.startsWith("deadline")) {
+                    bobby.addToList(input, "deadline");
+                } else if (input.startsWith("event")) {
+                    bobby.addToList(input, "event");
                 } else {
-                    bobby.addToList(input);
+                    throw new DukeException(ErrorString.ERROR_INVALID_COMMAND.toString());
                 }
             } catch (DukeException e) {
                 bobby.echo(e.getMessage());

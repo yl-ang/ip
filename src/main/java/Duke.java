@@ -1,5 +1,7 @@
 import errorHandle.DukeException;
 import errorHandle.ErrorString;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import task.DeadLine;
@@ -118,6 +120,7 @@ public class Duke {
 
         Task toDel = retrieveTask(i);
 
+        System.out.println("1");
         String output = String.format("     Noted. I've removed this task:\n       %s\n     "
                 + "Now you have %s tasks in the list.\n", toDel.toString(), taskLst.size());
         echo(output);
@@ -177,6 +180,24 @@ public class Duke {
         echo(output);
     }
 
+    public void save() throws DukeException {
+        // only invoke when task list is changed
+        FileWriter myWriter = null;
+        try {
+            myWriter = new FileWriter("out/duke.txt");
+
+            String output = "";
+            int numItemsLst = this.taskLst.size();
+            for (int i=0; i < numItemsLst; i++) {
+                output += this.taskLst.get(i).toStringForStorage() + "\n";
+            }
+            myWriter.write(output);
+            myWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
 
         Duke bobby = new Duke();

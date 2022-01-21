@@ -81,6 +81,7 @@ public class Duke {
 
             String desc = extractDesc(data, "deadline ", "/by");
             String date = extractTime(data,"/by ");
+
             task = new DeadLine(desc, date);
 
         }  else {

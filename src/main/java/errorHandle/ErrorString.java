@@ -16,7 +16,8 @@ public enum ErrorString {
     ERROR_EMPTY_DELETE("     ☹ OOPS!!! Please specify a task number for me to delete.\n"),
     ERROR_TASK_MARKED_ALREADY("     ☹ OOPS!!! Task is already marked.\n"),
     ERROR_TASK_UNMARKED_ALREADY("     ☹ OOPS!!! Task is already unmarked.\n"),
-    ERROR_FILE_IO_ERROR("     ☹ OOPS!!! FILE IO EXCEPTIONS\n");
+    ERROR_FILE_IO_ERROR("     ☹ OOPS!!! FILE IO EXCEPTIONS\n"),
+    ERROR_INVALID_DEADLINE_DATE_FORMAT("     ☹ OOPS!!! The date format provided is not in yyyy-mm-dd.\n");
 
     private String errorString;
 

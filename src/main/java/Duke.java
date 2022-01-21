@@ -1,8 +1,7 @@
 import errorHandle.DukeException;
 import errorHandle.ErrorString;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import task.DeadLine;
@@ -45,7 +44,7 @@ public class Duke {
             return data.substring(startIndex);
         } else {
             int endIndex = data.indexOf(timeCommand);
-            return data.substring(startIndex, endIndex);
+            return data.substring(startIndex, endIndex - 1);
         }
     }
 
@@ -210,13 +209,55 @@ public class Duke {
         } catch (IOException e) {
             throw new DukeException(ErrorString.ERROR_FILE_IO_ERROR.toString());
         }
+    }
 
+    public void load() {
+
+        File file = new File ("data/duke.txt");
+
+        // Check if file exists
+
+        FileReader myReader = null;
+        if (file.exists()) {
+            try {
+                myReader = new FileReader("data/duke.txt");
+                BufferedReader inStream = new BufferedReader(myReader);
+
+                String inString;
+
+                while ((inString = inStream.readLine()) != null) {
+                    String[] taskString = inString.split(" \\| ");
+                    
+                    Task currTask = null;
+
+                    switch(taskString[0]) {
+                    case "T":
+                        currTask = new ToDo(taskString[2]);
+                        break;
+                    case "D":
+                        currTask = new DeadLine(taskString[2], taskString[3]);
+                        break;
+                    case "E":
+                        currTask = new Event(taskString[2], taskString[3]);
+                        break;
+                    }
+
+                    if (taskString[1].equals("1")) {
+                        currTask.markAsDone();
+                    }
+                    this.taskLst.add(currTask);
+                }
+            } catch (IOException e) {
+                throw new DukeException(ErrorString.ERROR_FILE_IO_ERROR.toString());
+            }
+         }
     }
 
     public static void main(String[] args) throws DukeException {
 
         Duke bobby = new Duke();
         bobby.greet();
+        bobby.load();
 
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();

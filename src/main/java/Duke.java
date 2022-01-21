@@ -120,7 +120,6 @@ public class Duke {
 
         Task toDel = retrieveTask(i);
 
-        System.out.println("1");
         String output = String.format("     Noted. I've removed this task:\n       %s\n     "
                 + "Now you have %s tasks in the list.\n", toDel.toString(), taskLst.size());
         echo(output);
@@ -185,27 +184,33 @@ public class Duke {
     public void save() throws DukeException {
         // only invoke when task list is changed
 
+        // Check if dir exists
         File dir = new File("data");
         if (!dir.exists()) {
             dir.mkdirs();
         }
 
+        // Get tasks to export
+        String output = "";
+        int numItemsLst = this.taskLst.size();
+        for (int i=0; i < numItemsLst; i++) {
+            output += this.taskLst.get(i).toStringForStorage() + "\n";
+        }
+
         FileWriter myWriter = null;
         try {
-            myWriter = new FileWriter("data/duke.txt");
 
-            String output = "";
-            int numItemsLst = this.taskLst.size();
-            for (int i=0; i < numItemsLst; i++) {
-                output += this.taskLst.get(i).toStringForStorage() + "\n";
-            }
+            // FileWriter handles the missing file duke.txt,
+            // if the file does not exist, it will create it
+            // if the file exists, we will overwrite it with the updates task
+
+            myWriter = new FileWriter("data/duke.txt", false);
             myWriter.write(output);
             myWriter.close();
-
         } catch (IOException e) {
-            // This handling need to be improved
             throw new DukeException(ErrorString.ERROR_FILE_IO_ERROR.toString());
         }
+
     }
 
     public static void main(String[] args) throws DukeException {

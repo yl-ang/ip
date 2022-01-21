@@ -13,4 +13,10 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + "(at: " + this.at + ")";
     }
+
+    @Override
+    public String toStringForStorage() {
+        int isDone = super.isDone ? 1 : 0;
+        return "E | " + isDone + " | " + this.description + " | " + this.at;
+    }
 }

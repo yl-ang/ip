@@ -1,5 +1,8 @@
 import errorHandle.DukeException;
 import errorHandle.ErrorString;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import task.DeadLine;
@@ -52,12 +55,12 @@ public class Duke {
 
     }
 
-    public void addToList(String data) throws DukeException {
+    public void addToList(String data, String taskCommand) throws DukeException {
         Task task = null;
 
         String[] temp = data.split(" ");
 
-        if (data.startsWith("todo")) {
+        if (taskCommand.equals("todo")) {
 
             if (temp.length == 1) {
                 throw new DukeException(ErrorString.ERROR_EMPTY_TODO_DESC.toString());
@@ -66,7 +69,7 @@ public class Duke {
             String desc = extractDesc(data, "todo ", null);
             task = new ToDo(desc);
 
-        } else if (data.startsWith("deadline")) {
+        } else if (taskCommand.equals("deadline")) {
 
             if ((temp.length == 1) || (temp[1].equals("/by"))) {
                 throw new DukeException(ErrorString.ERROR_EMPTY_DEADLINE_DESC.toString());
@@ -80,7 +83,7 @@ public class Duke {
             String date = extractTime(data,"/by ");
             task = new DeadLine(desc, date);
 
-        }  else if (data.startsWith("event")) {
+        }  else {
 
             // Event handling
 
@@ -96,8 +99,6 @@ public class Duke {
             String date = extractTime(data,"/at ");
             task = new Event(desc, date);
 
-        } else {
-            throw new DukeException(ErrorString.ERROR_INVALID_COMMAND.toString());
         }
 
         // Adding task
@@ -105,6 +106,7 @@ public class Duke {
         String output = String.format("     Got it. I've added this task:\n       %s\n     "
                 + "Now you have %s tasks in the list.\n", task.toString(), taskLst.size());
         echo(output);
+        save();
     }
 
     public void deleteTask(String input) throws DukeException {
@@ -121,6 +123,7 @@ public class Duke {
         String output = String.format("     Noted. I've removed this task:\n       %s\n     "
                 + "Now you have %s tasks in the list.\n", toDel.toString(), taskLst.size());
         echo(output);
+        save();
     }
 
     public void displayList() {
@@ -175,9 +178,42 @@ public class Duke {
         }
         output += "       " + selectedTask.toString() + "\n";
         echo(output);
+        save();
     }
 
-    public static void main(String[] args) {
+    public void save() throws DukeException {
+        // only invoke when task list is changed
+
+        // Check if dir exists
+        File dir = new File("data");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        // Get tasks to export
+        String output = "";
+        int numItemsLst = this.taskLst.size();
+        for (int i=0; i < numItemsLst; i++) {
+            output += this.taskLst.get(i).toStringForStorage() + "\n";
+        }
+
+        FileWriter myWriter = null;
+        try {
+
+            // FileWriter handles the missing file duke.txt,
+            // if the file does not exist, it will create it
+            // if the file exists, we will overwrite it with the updates task
+
+            myWriter = new FileWriter("data/duke.txt", false);
+            myWriter.write(output);
+            myWriter.close();
+        } catch (IOException e) {
+            throw new DukeException(ErrorString.ERROR_FILE_IO_ERROR.toString());
+        }
+
+    }
+
+    public static void main(String[] args) throws DukeException {
 
         Duke bobby = new Duke();
         bobby.greet();
@@ -195,8 +231,14 @@ public class Duke {
                     bobby.markOrUnmarked("unmark",input);
                 } else if (input.startsWith("delete")) {
                     bobby.deleteTask(input);
+                } else if (input.startsWith("todo")) {
+                    bobby.addToList(input, "todo");
+                } else if (input.startsWith("deadline")) {
+                    bobby.addToList(input, "deadline");
+                } else if (input.startsWith("event")) {
+                    bobby.addToList(input, "event");
                 } else {
-                    bobby.addToList(input);
+                    throw new DukeException(ErrorString.ERROR_INVALID_COMMAND.toString());
                 }
             } catch (DukeException e) {
                 bobby.echo(e.getMessage());

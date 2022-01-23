@@ -16,4 +16,7 @@ bin/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 
-/data
+/src/test/out/test/test/storage/data
+/src/test/out
+/src/test/.idea/
+/src/test/data

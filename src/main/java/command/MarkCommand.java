@@ -1,6 +1,7 @@
 package command;
 
 import storage.Storage;
+import task.Task;
 import task.TaskList;
 import ui.Ui;
 
@@ -16,9 +17,9 @@ public class MarkCommand extends Command {
 
     @Override
     public void execute(TaskList taskLst, Ui ui, Storage storage) {
-        taskLst.markOrUnmarked("mark", this.taskNum);
+        Task selectedTask = taskLst.markOrUnmarked("mark", this.taskNum);
         storage.save(taskLst.getTaskLst());
-        ui.showMark();
+        ui.showMark(selectedTask);
     }
 
 

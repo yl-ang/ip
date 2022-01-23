@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    private ArrayList<Task> taskLst = new ArrayList<>();
+    private ArrayList<Task> taskLst;
 
     public TaskList(ArrayList<Task> tasks) {
         this.taskLst = tasks;
@@ -28,6 +28,7 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(ErrorString.ERROR_INDEX_OUT_OF_BOUND_TASK.toString());
         }
+
         return selectedTask;
     }
 
@@ -38,11 +39,11 @@ public class TaskList {
 
     public Task deleteTask(int index) throws DukeException {
         Task toDel = retrieveTask(index);
-        this.taskLst.remove(index);
+        this.taskLst.remove(index -1);
         return toDel;
     }
 
-    public void markOrUnmarked(String action, int taskNum) throws DukeException {
+    public Task markOrUnmarked(String action, int taskNum) throws DukeException {
         Task selectedTask = retrieveTask(taskNum);
 
         if (action.equals("mark")) {
@@ -51,6 +52,7 @@ public class TaskList {
         } else {
             selectedTask.undoDone();
         }
+        return selectedTask;
     }
 
 }

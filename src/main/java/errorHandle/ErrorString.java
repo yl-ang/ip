@@ -18,7 +18,9 @@ public enum ErrorString {
     ERROR_TASK_UNMARKED_ALREADY("     ☹ OOPS!!! Task is already unmarked.\n"),
     ERROR_FILE_IO_ERROR("     ☹ OOPS!!! FILE IO EXCEPTIONS\n"),
     ERROR_INVALID_DEADLINE_DATE_FORMAT("     ☹ OOPS!!! The date format provided is not in yyyy-mm-dd.\n"),
-    ERROR_LOADING_ERROR("     ☹ OOPS!!! There is error in loading the tasks from duke.txt\n");
+    ERROR_LOADING_ERROR("     ☹ OOPS!!! There is error in loading the tasks from duke.txt\n"),
+    ERROR_NOT_NUMBER_STRING("     ☹ OOPS!!! Please provide number and not letters.\n");
+
 
     private String errorString;
 

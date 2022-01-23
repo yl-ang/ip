@@ -59,13 +59,15 @@ public class Ui {
         }
         echo(output);
     }
-    public void showMark() {
+    public void showMark(Task selectedTask) {
         String output = "     Nice! I've marked this task as done:\n";
+        output += "       " + selectedTask.toString() + "\n";
         echo(output);
     }
 
-    public void showUnmark() {
+    public void showUnmark(Task selectedTask) {
         String output = "     OK, I've marked this task as not done yet:\n";
+        output += "       " + selectedTask.toString() + "\n";
         echo(output);
     }
 

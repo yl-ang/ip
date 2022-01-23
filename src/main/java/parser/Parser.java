@@ -48,6 +48,8 @@ public class Parser {
                 i = Integer.parseInt(fullCommand.substring("delete".length() + 1));
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(ErrorString.ERROR_EMPTY_DELETE.toString());
+            }  catch (NumberFormatException e) {
+                throw new DukeException(ErrorString.ERROR_NOT_NUMBER_STRING.toString());
             }
 
             currCommand = new DeleteCommand(i);

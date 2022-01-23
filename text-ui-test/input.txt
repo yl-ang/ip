@@ -1,4 +1,5 @@
 deadline do homework /by no idea :-p
+list
 todo borrow book
 event project meeting
 deadline do homework
@@ -9,4 +10,5 @@ mark 1
 list
 unmark 1
 list
+deadline CS2201 Team Meeting /by 2021-01-23
 bye

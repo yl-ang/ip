@@ -4,9 +4,16 @@ import task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static errorHandle.ErrorString.ERROR_LOADING_ERROR;
+import static error.ErrorString.ERROR_LOADING_ERROR;
 
 public class Ui {
+
+    private Scanner sc;
+
+    public Ui() {
+        this.sc = new Scanner(System.in);
+
+    }
 
     public void echo(String toDisplay) {
         System.out.print(toDisplay);
@@ -72,8 +79,7 @@ public class Ui {
     }
 
     public String readCommand() {
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
+        String input = this.sc.nextLine();
         return input;
     };
 

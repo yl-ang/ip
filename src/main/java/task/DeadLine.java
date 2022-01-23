@@ -1,7 +1,7 @@
 package task;
 
-import errorHandle.DukeException;
-import errorHandle.ErrorString;
+import error.DukeException;
+import error.ErrorString;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

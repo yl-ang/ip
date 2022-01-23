@@ -1,7 +1,7 @@
 package command;
 
-import errorHandle.DukeException;
-import errorHandle.ErrorString;
+import error.DukeException;
+import error.ErrorString;
 import storage.Storage;
 import task.*;
 import ui.Ui;

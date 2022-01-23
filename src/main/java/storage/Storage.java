@@ -1,7 +1,7 @@
 package storage;
 
-import errorHandle.DukeException;
-import errorHandle.ErrorString;
+import error.DukeException;
+import error.ErrorString;
 import task.*;
 
 import java.io.BufferedReader;

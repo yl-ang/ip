@@ -1,5 +1,5 @@
 import command.Command;
-import errorHandle.DukeException;
+import error.DukeException;
 import parser.Parser;
 import storage.Storage;
 import task.TaskList;
@@ -44,6 +44,4 @@ public class Duke {
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }
-
-
 }

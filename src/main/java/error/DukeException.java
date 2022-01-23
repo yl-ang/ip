@@ -1,4 +1,4 @@
-package errorHandle;
+package error;
 
 public class DukeException extends RuntimeException {
 

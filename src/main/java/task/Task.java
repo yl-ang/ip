@@ -1,6 +1,6 @@
 package task;
-import errorHandle.DukeException;
-import errorHandle.ErrorString;
+import error.DukeException;
+import error.ErrorString;
 
 public class Task {
     protected String description;

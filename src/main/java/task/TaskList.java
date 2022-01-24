@@ -32,6 +32,18 @@ public class TaskList {
         return selectedTask;
     }
 
+    public ArrayList<Task> findTask(String keyword) {
+        int taskLstSize = this.taskLst.size();
+        ArrayList<Task> foundTask = new ArrayList<>();
+        for (int i=0; i < taskLstSize; i++) {
+
+            Task currTemp = this.taskLst.get(i);
+            if (currTemp.toString().contains(keyword)) {
+                foundTask.add(currTemp);
+            }
+        }
+        return foundTask;
+    }
 
     public void addToList(Task task) throws DukeException {
         this.taskLst.add(task);

@@ -48,7 +48,7 @@ public class Parser {
                 i = Integer.parseInt(fullCommand.substring("delete".length() + 1));
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(ErrorString.ERROR_EMPTY_DELETE.toString());
-            }  catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 throw new DukeException(ErrorString.ERROR_NOT_NUMBER_STRING.toString());
             }
 
@@ -59,6 +59,8 @@ public class Parser {
             currCommand = new AddCommand(fullCommand, "deadline");
         } else if (fullCommand.startsWith("event")) {
             currCommand = new AddCommand(fullCommand, "event");
+        } else if (fullCommand.startsWith("find")) {
+            currCommand = new FindCommand(fullCommand);
         } else if (fullCommand.equals("bye") || fullCommand.startsWith("bye")) {
             currCommand = new ExitCommand();
         } else {

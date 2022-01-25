@@ -1,5 +1,7 @@
 package command;
 
+import error.DukeException;
+import error.ErrorString;
 import storage.Storage;
 import task.Task;
 import task.TaskList;
@@ -14,8 +16,14 @@ public class FindCommand extends Command {
 
     public FindCommand(String data) {
 
-        String[] temp = data.split(" ");
-        this.keyword = temp[1];
+        try {
+            String[] temp = data.split(" ");
+            this.keyword = temp[1];
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(ErrorString.ERROR_EMPTY_FIND_KEYWORD.toString());
+        }
+
+
     }
 
     @Override

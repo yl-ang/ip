@@ -78,6 +78,16 @@ public class Ui {
         echo(output);
     }
 
+    public void showFind(ArrayList<Task> taskLst) {
+        String output = "     Here are the matching tasks in your list:\n";
+        int numItemsLst = taskLst.size();
+        for (int i=0; i < numItemsLst; i++) {
+            output += "     " + (i + 1) + "." + taskLst.get(i).toString() + "\n";
+        }
+        echo(output);
+
+    }
+
     public String readCommand() {
         String input = this.sc.nextLine();
         return input;

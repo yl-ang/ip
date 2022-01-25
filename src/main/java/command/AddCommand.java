@@ -11,6 +11,13 @@ public class AddCommand extends Command {
     private boolean isExit = false;
     private Task task;
 
+    /**
+     * Constructs AddCommand object with the supplied user input and taskCommand.
+     *
+     * @param data Full user input.
+     * @param taskCommand Task command specified by the user.
+     * @throws DukeException If no task description or no date and time is supplied.
+     */
     public AddCommand(String data, String taskCommand) throws DukeException {
         Task task = null;
 
@@ -60,6 +67,14 @@ public class AddCommand extends Command {
         this.task = task;
     };
 
+    /**
+     * Extracts the task description from the user input.
+     *
+     * @param data Data the full user input.
+     * @param start Starting string to extract from.
+     * @param timeCommand Stopping string to extract to.
+     * @return Extracted task description from user input.
+     */
     public String extractDesc(String data, String start, String timeCommand) {
         int startIndex = data.indexOf(start) + start.length();
         if (timeCommand == null) {
@@ -70,11 +85,25 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Extracts the task date and time from the user input.
+     *
+     * @param data Full user input.
+     * @param timeCommand Starting time and date to extract from.
+     * @return Extracted date dnd time from user input.
+     */
     public String extractTime(String data, String timeCommand) {
         int startIndex = data.indexOf(timeCommand) + timeCommand.length();
         return data.substring(startIndex);
     }
 
+    /**
+     * Executes AddCommand with the objects supplied.
+     *
+     * @param taskLst TaskLst object containing the current tasks.
+     * @param ui Ui object containing the user interface messages and scanner object.
+     * @param storage Storage object containing the methods to load and save.
+     */
     @Override
     public void execute(TaskList taskLst, Ui ui, Storage storage) {
         taskLst.addToList(this.task);
@@ -82,6 +111,11 @@ public class AddCommand extends Command {
         ui.showAddedTask(this.task, taskLst.getTaskLst());
     }
 
+    /**
+     * Checks and returns the boolean whether if command is exit.
+     *
+     * @return Boolean if the command is exit.
+     */
     @Override
     public boolean isExit() {
         return this.isExit;

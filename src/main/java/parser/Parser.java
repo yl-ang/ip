@@ -6,8 +6,13 @@ import error.ErrorString;
 
 public class Parser {
 
-    // deals with making sense of the user command
-
+    /**
+     * Parses user input and return the command object based on user input.
+     *
+     * @param fullCommand FullCommand specified by the user.
+     * @return Command object based on the user specified command.
+     * @throws DukeException if command supplied is not a valid index.
+     */
     public static Command parse(String fullCommand) throws DukeException {
 
         Command currCommand;

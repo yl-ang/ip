@@ -15,20 +15,26 @@ public class Storage {
 
     private String filePath;
 
+    /**
+     * Constructs a Storage object with the specified filePath.
+     *
+     * @param filePath FilePath the path to the file containing the tasks.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Stores the updated tasks into the file at filePath.
+     *
+     * @param taskLst The current list of tasks.
+     * @throws DukeException if IOException from accessing the file at filePath.
+     */
     public void save(ArrayList<Task> taskLst) throws DukeException {
-        // only invoke when task list is changed
-
-        // Check if dir exists
         File dir = new File("data");
         if (!dir.exists()) {
             dir.mkdirs();
         }
-
-        // Get tasks to export
         String output = "";
         int numItemsLst = taskLst.size();
         for (int i=0; i < numItemsLst; i++) {
@@ -37,11 +43,6 @@ public class Storage {
 
         FileWriter myWriter = null;
         try {
-
-            // FileWriter handles the missing file duke.txt,
-            // if the file does not exist, it will create it
-            // if the file exists, we will overwrite it with the updates task
-
             myWriter = new FileWriter(this.filePath, false);
             myWriter.write(output);
             myWriter.close();
@@ -50,11 +51,15 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the tasks from filePath.
+     *
+     * @return List of tasks loaded from filePath.
+     */
     public ArrayList<Task> load() {
 
         File file = new File (this.filePath);
 
-        // Check if file exists
 
         ArrayList<Task> taskLst = new ArrayList<Task>();
 

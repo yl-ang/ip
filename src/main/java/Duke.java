@@ -12,6 +12,11 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs a Duke object.
+     *
+     * @param filePath FilePath of the location of duke.txt.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -23,6 +28,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Executes duke object to greet and listen for commands.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -41,6 +49,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Invokes duke object's run method to start executing.
+     *
+     * @param args Args parsed from CLI.
+     */
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }

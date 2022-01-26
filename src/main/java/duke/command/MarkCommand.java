@@ -5,6 +5,11 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * MarkCommand is a command that handles mark commands.
+ *
+ * @author yl-ang
+ */
 public class MarkCommand extends Command {
 
     private boolean isExit = false;

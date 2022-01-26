@@ -4,6 +4,11 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * ListCommand is a command that handles list command.
+ *
+ * @author yl-ang
+ */
 public class ListCommand extends Command {
 
     private boolean isExit = false;

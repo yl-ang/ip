@@ -4,6 +4,11 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Command class am abstract class with common command methods.
+ *
+ * @author yl-ang
+ */
 public abstract class Command {
     /**
      * Executes based on the command type and the objects supplied.

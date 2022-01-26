@@ -10,6 +10,11 @@ import duke.task.TaskList;
 import duke.task.ToDo;
 import duke.ui.Ui;
 
+/**
+ * AddCommand is a command that handles add instructions.
+ *
+ * @author yl-ang
+ */
 public class AddCommand extends Command {
 
     private boolean isExit = false;

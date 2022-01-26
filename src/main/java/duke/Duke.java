@@ -7,6 +7,11 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Duke is a personal assistant chatbot that helps a person to keep track of tasks.
+ *
+ * @author yl-ang
+ */
 public class Duke {
 
     private Storage storage;

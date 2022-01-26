@@ -14,6 +14,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Storage handles the updating and loading of tasks with the specified file path.
+ *
+ * @author yl-ang
+ */
 public class Storage {
     private String filePath;
 

@@ -11,6 +11,11 @@ import duke.command.UnmarkCommand;
 import duke.error.DukeException;
 import duke.error.ErrorString;
 
+/**
+ * Parser parses and handles user command.
+ *
+ * @author yl-ang
+ */
 public class Parser {
 
     /**

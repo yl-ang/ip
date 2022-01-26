@@ -6,6 +6,11 @@ import duke.error.ErrorString;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * DeadLine is a task that need to be done before a specific date/time.
+ *
+ * @author yl-ang
+ */
 public class DeadLine extends Task {
 
     protected LocalDate by;

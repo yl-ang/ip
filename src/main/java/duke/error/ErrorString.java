@@ -1,5 +1,10 @@
 package duke.error;
 
+/**
+ * ErrorString is an enum that contains error strings for Duke.
+ *
+ * @author yl-ang
+ */
 public enum ErrorString {
 
     ERROR_INDEX_OUT_OF_BOUND_TASK("     ☹ OOPS!!! The duke.task number you specify is invalid.\n"),

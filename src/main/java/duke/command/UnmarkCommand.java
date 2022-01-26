@@ -5,6 +5,11 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * UnmarkCommand is a command that handles unmark commands.
+ *
+ * @author yl-ang
+ */
 public class UnmarkCommand extends Command {
 
     private boolean isExit = false;

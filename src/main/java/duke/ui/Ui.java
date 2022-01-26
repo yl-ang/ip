@@ -6,6 +6,11 @@ import duke.task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Ui deals with interactions with the user.
+ *
+ * @author yl-ang
+ */
 public class Ui {
 
     private Scanner sc;

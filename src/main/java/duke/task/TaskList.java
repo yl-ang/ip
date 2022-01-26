@@ -5,6 +5,11 @@ import duke.error.ErrorString;
 
 import java.util.ArrayList;
 
+/**
+ * TaskList contains the task list and handles operations on the list.
+ *
+ * @author yl-ang
+ */
 public class TaskList {
 
     private ArrayList<Task> taskLst;

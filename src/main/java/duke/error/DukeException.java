@@ -1,5 +1,10 @@
 package duke.error;
 
+/**
+ * DukeException represents exceptions specific to Duke.
+ *
+ * @author yl-ang
+ */
 public class DukeException extends RuntimeException {
 
     /**

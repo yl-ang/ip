@@ -3,6 +3,11 @@ package duke.task;
 import duke.error.DukeException;
 import duke.error.ErrorString;
 
+/**
+ * Task contains details of what the user aims to do.
+ *
+ * @author yl-ang
+ */
 public class Task {
     protected String description;
     protected boolean isDone;

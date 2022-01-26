@@ -1,5 +1,10 @@
 package duke.task;
 
+/**
+ * Event is a task that start at a specific time and ends at a specific time.
+ *
+ * @author yl-ang
+ */
 public class Event extends Task {
 
     protected String at;

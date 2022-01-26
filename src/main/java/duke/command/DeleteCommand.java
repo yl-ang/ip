@@ -5,6 +5,11 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * DeleteCommand is a command that handles delete instructions.
+ *
+ * @author yl-ang
+ */
 public class DeleteCommand extends Command {
 
     private boolean isExit = false;

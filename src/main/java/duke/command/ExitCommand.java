@@ -4,6 +4,11 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * ExitCommand is a command that handles the exit command.
+ *
+ * @author yl-ang
+ */
 public class ExitCommand extends Command {
 
     private boolean isExit = true;

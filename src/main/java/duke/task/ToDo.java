@@ -1,5 +1,10 @@
 package duke.task;
 
+/**
+ * ToDo is a task without any date/time attached to it.
+ *
+ * @author yl-ang
+ */
 public class ToDo extends Task {
 
     /**

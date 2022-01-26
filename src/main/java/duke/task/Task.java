@@ -1,6 +1,7 @@
-package task;
-import error.DukeException;
-import error.ErrorString;
+package duke.task;
+
+import duke.error.DukeException;
+import duke.error.ErrorString;
 
 public class Task {
     protected String description;

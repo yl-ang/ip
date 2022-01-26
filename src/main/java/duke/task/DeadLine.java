@@ -1,10 +1,9 @@
-package task;
+package duke.task;
 
-import error.DukeException;
-import error.ErrorString;
+import duke.error.DukeException;
+import duke.error.ErrorString;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class DeadLine extends Task {
@@ -23,7 +22,6 @@ public class DeadLine extends Task {
 
     @Override
     public String toString() {
-        String dateFormatted = this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
 

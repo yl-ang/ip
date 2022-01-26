@@ -1,10 +1,14 @@
-package command;
+package duke.command;
 
-import error.DukeException;
-import error.ErrorString;
-import storage.Storage;
-import task.*;
-import ui.Ui;
+import duke.error.DukeException;
+import duke.error.ErrorString;
+import duke.storage.Storage;
+import duke.task.DeadLine;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
+import duke.ui.Ui;
 
 public class AddCommand extends Command {
 

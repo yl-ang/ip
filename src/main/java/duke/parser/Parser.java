@@ -1,12 +1,18 @@
-package parser;
+package duke.parser;
 
-import command.*;
-import error.DukeException;
-import error.ErrorString;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
+import duke.error.DukeException;
+import duke.error.ErrorString;
 
 public class Parser {
 
-    // deals with making sense of the user command
+    // deals with making sense of the user duke.command
 
     public static Command parse(String fullCommand) throws DukeException {
 

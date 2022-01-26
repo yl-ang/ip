@@ -1,7 +1,8 @@
-package task;
+package duke.task;
 
-import error.DukeException;
-import error.ErrorString;
+import duke.error.DukeException;
+import duke.error.ErrorString;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -21,7 +22,7 @@ public class TaskList {
      * Constructs TaskList object.
      */
     public TaskList() {
-        this.taskLst = new ArrayList<Task>();
+        this.taskLst = new ArrayList<>();
     }
 
     /**
@@ -40,7 +41,7 @@ public class TaskList {
      * @throws DukeException if i <= 0 or i >= size of taskLst.
      */
     public Task retrieveTask(int i) throws DukeException {
-        Task selectedTask = null;
+        Task selectedTask;
         try {
             selectedTask = this.taskLst.get(i - 1);
         } catch (IndexOutOfBoundsException e) {
@@ -51,11 +52,8 @@ public class TaskList {
     }
 
     public ArrayList<Task> findTask(String keyword) {
-        int taskLstSize = this.taskLst.size();
         ArrayList<Task> foundTask = new ArrayList<>();
-        for (int i=0; i < taskLstSize; i++) {
-
-            Task currTemp = this.taskLst.get(i);
+        for (Task currTemp : this.taskLst) {
             if (currTemp.toString().contains(keyword)) {
                 foundTask.add(currTemp);
             }

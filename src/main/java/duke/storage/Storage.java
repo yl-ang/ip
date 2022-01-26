@@ -1,8 +1,11 @@
-package storage;
+package duke.storage;
 
-import error.DukeException;
-import error.ErrorString;
-import task.*;
+import duke.error.DukeException;
+import duke.error.ErrorString;
+import duke.task.DeadLine;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,7 +15,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
-
     private String filePath;
 
     /**
@@ -36,13 +38,16 @@ public class Storage {
             dir.mkdirs();
         }
         String output = "";
-        int numItemsLst = taskLst.size();
-        for (int i=0; i < numItemsLst; i++) {
-            output += taskLst.get(i).toStringForStorage() + "\n";
+        for (Task task : taskLst) {
+            output += task.toStringForStorage() + "\n";
         }
 
-        FileWriter myWriter = null;
+        FileWriter myWriter;
         try {
+            // FileWriter handles the missing file duke.txt,
+            // if the file does not exist, it will create it
+            // if the file exists, we will overwrite it with the updates duke.task
+
             myWriter = new FileWriter(this.filePath, false);
             myWriter.write(output);
             myWriter.close();
@@ -61,9 +66,9 @@ public class Storage {
         File file = new File (this.filePath);
 
 
-        ArrayList<Task> taskLst = new ArrayList<Task>();
+        ArrayList<Task> taskLst = new ArrayList<>();
 
-        FileReader myReader = null;
+        FileReader myReader;
         if (file.exists()) {
             try {
                 myReader = new FileReader(this.filePath);

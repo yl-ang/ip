@@ -1,6 +1,7 @@
-package task;
-import error.DukeException;
-import error.ErrorString;
+package duke.task;
+
+import duke.error.DukeException;
+import duke.error.ErrorString;
 
 public class Task {
     protected String description;
@@ -31,7 +32,7 @@ public class Task {
      */
     public void markAsDone() throws DukeException {
 
-        if (this.isDone == false) {
+        if (!this.isDone) {
             this.isDone = true;
         } else {
             throw new DukeException(ErrorString.ERROR_TASK_MARKED_ALREADY.toString());
@@ -45,7 +46,7 @@ public class Task {
      */
     public void undoDone() throws DukeException {
 
-        if (this.isDone == true) {
+        if (this.isDone) {
             this.isDone = false;
         } else {
             throw new DukeException(ErrorString.ERROR_TASK_UNMARKED_ALREADY.toString());

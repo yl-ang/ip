@@ -1,8 +1,15 @@
-package parser;
+package duke.parser;
 
-import command.*;
-import error.DukeException;
-import error.ErrorString;
+import command.FindCommand;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
+import duke.error.DukeException;
+import duke.error.ErrorString;
 
 public class Parser {
 
@@ -21,7 +28,7 @@ public class Parser {
             currCommand = new ListCommand();
         } else if (fullCommand.startsWith("mark")) {
 
-            Integer i = null;
+            int i;
             try {
                 i = Integer.parseInt(fullCommand.substring("mark".length() + 1));
             } catch (IndexOutOfBoundsException e) {
@@ -34,7 +41,7 @@ public class Parser {
 
         } else if (fullCommand.startsWith("unmark")) {
 
-            Integer i = null;
+            int i;
             try {
                 i = Integer.parseInt(fullCommand.substring("unmark".length() + 1));
             } catch (IndexOutOfBoundsException e) {
@@ -47,7 +54,7 @@ public class Parser {
 
         } else if (fullCommand.startsWith("delete")) {
 
-            Integer i = null;
+            int i;
 
             try {
                 i = Integer.parseInt(fullCommand.substring("delete".length() + 1));
@@ -66,7 +73,7 @@ public class Parser {
             currCommand = new AddCommand(fullCommand, "event");
         } else if (fullCommand.startsWith("find")) {
             currCommand = new FindCommand(fullCommand);
-        } else if (fullCommand.equals("bye") || fullCommand.startsWith("bye")) {
+        } else if (fullCommand.startsWith("bye")) {
             currCommand = new ExitCommand();
         } else {
             throw new DukeException(ErrorString.ERROR_INVALID_COMMAND.toString());

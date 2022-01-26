@@ -1,11 +1,12 @@
 package command;
 
-import error.DukeException;
-import error.ErrorString;
-import storage.Storage;
-import task.Task;
-import task.TaskList;
-import ui.Ui;
+import duke.command.Command;
+import duke.error.DukeException;
+import duke.error.ErrorString;
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 import java.util.ArrayList;
 

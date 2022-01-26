@@ -1,5 +1,5 @@
 import org.junit.jupiter.api.Test;
-import storage.Storage;
+import duke.storage.Storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

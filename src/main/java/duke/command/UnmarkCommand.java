@@ -1,26 +1,26 @@
-package command;
+package duke.command;
 
-import storage.Storage;
-import task.Task;
-import task.TaskList;
-import ui.Ui;
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
-public class DeleteCommand extends Command {
+public class UnmarkCommand extends Command {
 
     private boolean isExit = false;
     private int taskNum;
 
     /**
-     * Constructs DeleteCommand object with the specified index.
+     * Constructs UnmarkCommand object with the specified task number.
      *
-     * @param index The specified index of the task to be deleted.
+     * @param taskNum Task number specified by the user.
      */
-    public DeleteCommand(int index) {
-        this.taskNum = index;
-    };
+    public UnmarkCommand(int taskNum) {
+        this.taskNum = taskNum;
+    }
 
     /**
-     * Executes DeleteCommand with the objects supplied.
+     * Executes UnmarkCommand with the objects supplied.
      *
      * @param taskLst TaskLst object containing the current tasks.
      * @param ui Ui object containing the user interface messages and scanner object.
@@ -28,19 +28,18 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(TaskList taskLst, Ui ui, Storage storage) {
-        Task task = taskLst.deleteTask(this.taskNum);
+        Task selectedTask = taskLst.markOrUnmarked("unmark", this.taskNum);
         storage.save(taskLst.getTaskLst());
-        ui.showDeletedTask(task, taskLst.getTaskLst());
+        ui.showUnmark(selectedTask);
     }
 
     /**
      * Checks and returns the boolean whether if command is exit.
      *
-     * @return Boolean if the command is exit.
+     * @return Boolean if command is exit.
      */
     @Override
     public boolean isExit() {
-        return isExit;
+        return this.isExit;
     }
 }
-

@@ -1,15 +1,15 @@
-package command;
+package duke.command;
 
-import storage.Storage;
-import task.TaskList;
-import ui.Ui;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
-public class ListCommand extends Command {
+public class ExitCommand extends Command {
 
-    private boolean isExit = false;
+    private boolean isExit = true;
 
     /**
-     * Executes ListCommand with the objects supplied.
+     * Executes ExitCommand with the objects supplied.
      *
      * @param taskLst TaskLst object containing the current tasks.
      * @param ui Ui object containing the user interface messages and scanner object.
@@ -17,16 +17,17 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute(TaskList taskLst, Ui ui, Storage storage) {
-        ui.showList(taskLst.getTaskLst());
+        ui.showExit();
     }
 
     /**
      * Checks and returns the boolean whether if command is exit.
      *
-     * @return Boolean if command is exit.
+     * @return Boolean if the command is exit.
      */
     @Override
     public boolean isExit() {
-        return this.isExit;
+        return isExit;
     }
+
 }

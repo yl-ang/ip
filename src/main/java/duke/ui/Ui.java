@@ -1,10 +1,10 @@
-package ui;
-import task.Task;
+package duke.ui;
+
+import duke.error.ErrorString;
+import duke.task.Task;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static error.ErrorString.ERROR_LOADING_ERROR;
 
 public class Ui {
 
@@ -64,43 +64,43 @@ public class Ui {
      * Displays to the user error loading message.
      */
     public void showLoadingError() {
-        echo(ERROR_LOADING_ERROR.toString());
-    };
+        echo(ErrorString.ERROR_LOADING_ERROR.toString());
+    }
 
     /**
      * Displays to the user the specified deleted task.
      *
-     * @param toDel ToDel the specified deleted task.
-     * @param taskLst TaskLst the remaining tasks.
+     * @param deletedTask DeletedTask the specified deleted task.
+     * @param tasks Tasks the remaining tasks.
      */
-    public void showDeletedTask(Task toDel, ArrayList<Task> taskLst) {
-        String output = String.format("     Noted. I've removed this task:\n       %s\n     "
-                + "Now you have %s tasks in the list.\n", toDel.toString(), taskLst.size());
+    public void showDeletedTask(Task deletedTask, ArrayList<Task> tasks) {
+        String output = String.format("     Noted. I've removed this duke.task:\n       %s\n     "
+                + "Now you have %s tasks in the list.\n", deletedTask.toString(), tasks.size());
         echo(output);
-    };
+    }
 
     /**
      * Displays to the user the newly added task.
      *
-     * @param task Task the newly added task.
-     * @param taskLst TaskLst the list of all the tasks after adding.
+     * @param addedTask The newly added task.
+     * @param tasks The list of all the tasks after adding.
      */
-    public void showAddedTask(Task task, ArrayList<Task> taskLst) {
-        String output = String.format("     Got it. I've added this task:\n       %s\n     "
-                + "Now you have %s tasks in the list.\n", task.toString(), taskLst.size());
+    public void showAddedTask(Task addedTask, ArrayList<Task> tasks) {
+        String output = String.format("     Got it. I've added this duke.task:\n       %s\n     "
+                + "Now you have %s tasks in the list.\n", addedTask.toString(), tasks.size());
         echo(output);
-    };
+    }
 
     /**
      * Displays the tasks the user have currently.
      *
-     * @param taskLst TaskLst the list containing the current tasks.
+     * @param tasks The list containing the current tasks.
      */
-    public void showList(ArrayList<Task> taskLst) {
+    public void showList(ArrayList<Task> tasks) {
         String output = "     Here are the tasks in your list:\n";
-        int numItemsLst = taskLst.size();
-        for (int i=0; i < numItemsLst; i++) {
-            output += "     " + (i + 1) + "." + taskLst.get(i).toString() + "\n";
+        int numItems = tasks.size();
+        for (int i = 0; i < numItems; i++) {
+            output += "     " + (i + 1) + "." + tasks.get(i).toString() + "\n";
         }
         echo(output);
     }
@@ -111,7 +111,7 @@ public class Ui {
      * @param selectedTask SelectedTask task marked by the user.
      */
     public void showMark(Task selectedTask) {
-        String output = "     Nice! I've marked this task as done:\n";
+        String output = "     Nice! I've marked this duke.task as done:\n";
         output += "       " + selectedTask.toString() + "\n";
         echo(output);
     }
@@ -122,7 +122,7 @@ public class Ui {
      * @param selectedTask SelectedTask task unmarked by the user.
      */
     public void showUnmark(Task selectedTask) {
-        String output = "     OK, I've marked this task as not done yet:\n";
+        String output = "     OK, I've marked this duke.task as not done yet:\n";
         output += "       " + selectedTask.toString() + "\n";
         echo(output);
     }
@@ -134,8 +134,8 @@ public class Ui {
      */
     public void showFind(ArrayList<Task> taskLst) {
         String output = "     Here are the matching tasks in your list:\n";
-        int numItemsLst = taskLst.size();
-        for (int i=0; i < numItemsLst; i++) {
+        int numItems = taskLst.size();
+        for (int i = 0; i < numItems; i++) {
             output += "     " + (i + 1) + "." + taskLst.get(i).toString() + "\n";
         }
         echo(output);
@@ -150,7 +150,7 @@ public class Ui {
     public String readCommand() {
         String input = this.sc.nextLine();
         return input;
-    };
+    }
 
     /**
      * Displays to the user exit message.

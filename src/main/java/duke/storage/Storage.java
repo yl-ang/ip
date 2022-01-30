@@ -1,18 +1,18 @@
 package duke.storage;
 
-import duke.error.DukeException;
-import duke.error.ErrorString;
-import duke.task.DeadLine;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import duke.error.DukeException;
+import duke.error.ErrorString;
+import duke.task.DeadLine;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 /**
  * Storage handles the updating and loading of tasks with the specified file path.
@@ -66,7 +66,7 @@ public class Storage {
      *
      * @return List of tasks loaded from filePath.
      */
-    public ArrayList<Task> load() {
+    public ArrayList<Task> load() throws DukeException {
 
         File file = new File (this.filePath);
 
@@ -88,15 +88,15 @@ public class Storage {
                     Task currTask = null;
 
                     switch(taskString[0]) {
-                        case "T":
-                            currTask = new ToDo(taskString[2]);
-                            break;
-                        case "D":
-                            currTask = new DeadLine(taskString[2], taskString[3]);
-                            break;
-                        case "E":
-                            currTask = new Event(taskString[2], taskString[3]);
-                            break;
+                    case "T":
+                        currTask = new ToDo(taskString[2]);
+                        break;
+                    case "D":
+                        currTask = new DeadLine(taskString[2], taskString[3]);
+                        break;
+                    default:
+                        currTask = new Event(taskString[2], taskString[3]);
+                        break;
                     }
 
                     if (taskString[1].equals("1")) {

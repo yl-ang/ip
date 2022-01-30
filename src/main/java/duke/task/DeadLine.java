@@ -1,10 +1,10 @@
 package duke.task;
 
-import duke.error.DukeException;
-import duke.error.ErrorString;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+
+import duke.error.DukeException;
+import duke.error.ErrorString;
 
 /**
  * DeadLine is a task that need to be done before a specific date/time.
@@ -22,7 +22,7 @@ public class DeadLine extends Task {
      * @param date Date specified by the user.
      * @throws DukeException If date specified is not of the format yyyy-mm-dd.
      */
-    public DeadLine(String description,String date) throws DukeException {
+    public DeadLine(String description, String date) throws DukeException {
         super(description);
 
         try {

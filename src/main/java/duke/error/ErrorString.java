@@ -25,7 +25,7 @@ public enum ErrorString {
     ERROR_INVALID_DEADLINE_DATE_FORMAT("     ☹ OOPS!!! The date format provided is not in yyyy-mm-dd.\n"),
     ERROR_LOADING_ERROR("     ☹ OOPS!!! There is error in loading the tasks from duke.txt\n"),
     ERROR_NOT_NUMBER_STRING("     ☹ OOPS!!! Please provide number and not letters.\n"),
-    ERROR_EMPTY_FIND_KEYWORD("     ☹ OOPS!!! Please a search term for find.\n");
+    ERROR_EMPTY_FIND_KEYWORD("     ☹ OOPS!!! Please provide a search term for find.\n");
 
     private String errorString;
 

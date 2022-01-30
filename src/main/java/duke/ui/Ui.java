@@ -1,10 +1,10 @@
 package duke.ui;
 
-import duke.error.ErrorString;
-import duke.task.Task;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.error.ErrorString;
+import duke.task.Task;
 
 /**
  * Ui deals with interactions with the user.

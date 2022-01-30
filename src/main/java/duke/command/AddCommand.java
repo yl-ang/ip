@@ -52,11 +52,11 @@ public class AddCommand extends Command {
             }
 
             String desc = extractDesc(data, "deadline ", "/by");
-            String date = extractTime(data,"/by ");
+            String date = extractTime(data, "/by ");
 
             task = new DeadLine(desc, date);
 
-        }  else {
+        } else {
 
             // Event handling
 
@@ -69,7 +69,7 @@ public class AddCommand extends Command {
             }
 
             String desc = extractDesc(data, "event ", "/at");
-            String date = extractTime(data,"/at ");
+            String date = extractTime(data, "/at ");
             task = new Event(desc, date);
         }
 

@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.error.DukeException;
 import duke.error.ErrorString;
 import duke.storage.Storage;
@@ -7,13 +9,16 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
-import java.util.ArrayList;
-
 public class FindCommand extends Command {
 
     private boolean isExit = false;
     private String keyword;
 
+    /**
+     * Constructs FindCommand object with the supplied user input.
+     *
+     * @param data Full user input.
+     */
     public FindCommand(String data) {
         try {
             String[] temp = data.split(" ");

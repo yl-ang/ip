@@ -1,9 +1,9 @@
 package duke.task;
 
+import java.util.ArrayList;
+
 import duke.error.DukeException;
 import duke.error.ErrorString;
-
-import java.util.ArrayList;
 
 /**
  * TaskList contains the task list and handles operations on the list.
@@ -56,6 +56,12 @@ public class TaskList {
         return selectedTask;
     }
 
+    /**
+     * Retrieves tasks based on the supplied keyword.
+     *
+     * @param keyword Keyword the search key.
+     * @return Retrieved list of tasks based on the search keyword.
+     */
     public ArrayList<Task> findTask(String keyword) {
         ArrayList<Task> foundTask = new ArrayList<>();
         for (Task currTemp : this.taskLst) {
@@ -83,7 +89,7 @@ public class TaskList {
      */
     public Task deleteTask(int index) {
         Task toDel = retrieveTask(index);
-        this.taskLst.remove(index -1);
+        this.taskLst.remove(index - 1);
         return toDel;
     }
 

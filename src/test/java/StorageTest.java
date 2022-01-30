@@ -1,9 +1,10 @@
-import org.junit.jupiter.api.Test;
-import duke.storage.Storage;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class storageTest {
+import org.junit.jupiter.api.Test;
+
+import duke.storage.Storage;
+
+public class StorageTest {
 
     @Test
     public void loadTest() {

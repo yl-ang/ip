@@ -2,12 +2,12 @@ package duke.command;
 
 import java.util.ArrayList;
 
-import duke.error.DukeException;
-import duke.error.ErrorString;
+import duke.exception.DukeException;
+import duke.exception.ErrorString;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.gui.Ui;
 
 public class FindCommand extends Command {
 
@@ -29,9 +29,9 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskLst, Ui ui, Storage storage) {
+    public String execute(TaskList taskLst, Ui ui, Storage storage) {
         ArrayList<Task> tasks = taskLst.findTask(keyword);
-        ui.showFind(tasks);
+        return ui.showFind(tasks);
     }
 
     @Override

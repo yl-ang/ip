@@ -8,8 +8,8 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
-import duke.error.DukeException;
-import duke.error.ErrorString;
+import duke.exception.DukeException;
+import duke.exception.ErrorString;
 
 /**
  * Parser parses and handles user command.

@@ -1,9 +1,9 @@
-package duke.ui;
+package duke.gui;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.error.ErrorString;
+import duke.exception.ErrorString;
 import duke.task.Task;
 
 /**
@@ -34,7 +34,7 @@ public class Ui {
     /**
      * Displays to the user the greeting message during startup.
      */
-    public void showWelcome() {
+    public String showWelcome() {
 
         String intro = "      ____        _        \n"
                 + "     |  _ \\ _   _| | _____ \n"
@@ -43,9 +43,8 @@ public class Ui {
                 + "     |____/ \\__,_|_|\\_\\___|\n";
         intro += "    Hello! I'm Bobby\n";
         intro += "    What can I do for you?\n";
-        showLine();
-        echo(intro);
-        showLine();
+
+        return intro;
     }
 
     /**
@@ -61,15 +60,15 @@ public class Ui {
      *
      * @param errorMessage ErrorMessage specified error message.
      */
-    public void showError(String errorMessage) {
-        echo(errorMessage);
+    public String showError(String errorMessage) {
+        return errorMessage;
     }
 
     /**
      * Displays to the user error loading message.
      */
-    public void showLoadingError() {
-        echo(ErrorString.ERROR_LOADING_ERROR.toString());
+    public String showLoadingError() {
+        return ErrorString.ERROR_LOADING_ERROR.toString();
     }
 
     /**
@@ -78,10 +77,10 @@ public class Ui {
      * @param deletedTask DeletedTask the specified deleted task.
      * @param tasks Tasks the remaining tasks.
      */
-    public void showDeletedTask(Task deletedTask, ArrayList<Task> tasks) {
-        String output = String.format("     Noted. I've removed this duke.task:\n       %s\n     "
+    public String showDeletedTask(Task deletedTask, ArrayList<Task> tasks) {
+        String output = String.format("Noted. I've removed this duke.task:\n       %s\n     "
                 + "Now you have %s tasks in the list.\n", deletedTask.toString(), tasks.size());
-        echo(output);
+        return output;
     }
 
     /**
@@ -90,10 +89,10 @@ public class Ui {
      * @param addedTask The newly added task.
      * @param tasks The list of all the tasks after adding.
      */
-    public void showAddedTask(Task addedTask, ArrayList<Task> tasks) {
-        String output = String.format("     Got it. I've added this duke.task:\n       %s\n     "
+    public String showAddedTask(Task addedTask, ArrayList<Task> tasks) {
+        String output = String.format("Got it. I've added this duke.task:\n       %s\n"
                 + "Now you have %s tasks in the list.\n", addedTask.toString(), tasks.size());
-        echo(output);
+        return output;
     }
 
     /**
@@ -101,13 +100,13 @@ public class Ui {
      *
      * @param tasks The list containing the current tasks.
      */
-    public void showList(ArrayList<Task> tasks) {
-        String output = "     Here are the tasks in your list:\n";
+    public String showList(ArrayList<Task> tasks) {
+        String output = "Here are the tasks in your list:\n";
         int numItems = tasks.size();
         for (int i = 0; i < numItems; i++) {
-            output += "     " + (i + 1) + "." + tasks.get(i).toString() + "\n";
+            output += (i + 1) + "." + tasks.get(i).toString() + "\n";
         }
-        echo(output);
+        return output;
     }
 
     /**
@@ -115,10 +114,10 @@ public class Ui {
      *
      * @param selectedTask SelectedTask task marked by the user.
      */
-    public void showMark(Task selectedTask) {
-        String output = "     Nice! I've marked this duke.task as done:\n";
-        output += "       " + selectedTask.toString() + "\n";
-        echo(output);
+    public String showMark(Task selectedTask) {
+        String output = "Nice! I've marked this duke.task as done:\n";
+        output += selectedTask.toString() + "\n";
+        return output;
     }
 
     /**
@@ -126,10 +125,10 @@ public class Ui {
      *
      * @param selectedTask SelectedTask task unmarked by the user.
      */
-    public void showUnmark(Task selectedTask) {
-        String output = "     OK, I've marked this duke.task as not done yet:\n";
-        output += "       " + selectedTask.toString() + "\n";
-        echo(output);
+    public String showUnmark(Task selectedTask) {
+        String output = "OK, I've marked this duke.task as not done yet:\n";
+        output += selectedTask.toString() + "\n";
+        return output;
     }
 
     /**
@@ -137,14 +136,13 @@ public class Ui {
      *
      * @param taskLst The current list of tasks.
      */
-    public void showFind(ArrayList<Task> taskLst) {
-        String output = "     Here are the matching tasks in your list:\n";
+    public String showFind(ArrayList<Task> taskLst) {
+        String output = "Here are the matching tasks in your list:\n";
         int numItems = taskLst.size();
         for (int i = 0; i < numItems; i++) {
-            output += "     " + (i + 1) + "." + taskLst.get(i).toString() + "\n";
+            output += (i + 1) + "." + taskLst.get(i).toString() + "\n";
         }
-        echo(output);
-
+        return output;
     }
 
     /**
@@ -160,7 +158,7 @@ public class Ui {
     /**
      * Displays to the user exit message.
      */
-    public void showExit() {
-        echo("    Bye. Hope to see you again soon!\n");
+    public String showExit() {
+        return "Bye. Hope to see you again soon!\n";
     }
 }

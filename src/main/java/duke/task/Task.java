@@ -1,7 +1,7 @@
 package duke.task;
 
-import duke.error.DukeException;
-import duke.error.ErrorString;
+import duke.exception.DukeException;
+import duke.exception.ErrorString;
 
 /**
  * Task contains details of what the user aims to do.

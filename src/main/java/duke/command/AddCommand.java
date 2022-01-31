@@ -1,14 +1,14 @@
 package duke.command;
 
-import duke.error.DukeException;
-import duke.error.ErrorString;
+import duke.exception.DukeException;
+import duke.exception.ErrorString;
 import duke.storage.Storage;
 import duke.task.DeadLine;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
-import duke.ui.Ui;
+import duke.gui.Ui;
 
 /**
  * AddCommand is a command that handles add instructions.
@@ -114,10 +114,10 @@ public class AddCommand extends Command {
      * @param storage Storage object containing the methods to load and save.
      */
     @Override
-    public void execute(TaskList taskLst, Ui ui, Storage storage) {
+    public String execute(TaskList taskLst, Ui ui, Storage storage) {
         taskLst.addToList(this.task);
         storage.save(taskLst.getTaskLst());
-        ui.showAddedTask(this.task, taskLst.getTaskLst());
+        return ui.showAddedTask(this.task, taskLst.getTaskLst());
     }
 
     /**

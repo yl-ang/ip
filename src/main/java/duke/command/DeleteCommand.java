@@ -3,7 +3,7 @@ package duke.command;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.gui.Ui;
 
 /**
  * DeleteCommand is a command that handles delete instructions.
@@ -32,10 +32,10 @@ public class DeleteCommand extends Command {
      * @param storage Storage object containing the methods to load and save.
      */
     @Override
-    public void execute(TaskList taskLst, Ui ui, Storage storage) {
+    public String execute(TaskList taskLst, Ui ui, Storage storage) {
         Task task = taskLst.deleteTask(this.taskNum);
         storage.save(taskLst.getTaskLst());
-        ui.showDeletedTask(task, taskLst.getTaskLst());
+        return ui.showDeletedTask(task, taskLst.getTaskLst());
     }
 
     /**

@@ -1,11 +1,11 @@
 package duke;
 
 import duke.command.Command;
-import duke.error.DukeException;
+import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.gui.Ui;
 
 /**
  * Duke is a personal assistant chatbot that helps a person to keep track of tasks.
@@ -56,19 +56,19 @@ public class Duke {
     }
 
     /**
-     * Invokes duke object's run method to start executing.
-     *
-     * @param args Args parsed from CLI.
-     */
-//    public static void main(String[] args) {
-//        new Duke("data/tasks.txt").run();
-//    }
-
-    /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    public String getResponse(String input) {
-        return "Duke heard: " + input;
+    public String getResponse(String fullCommand) {
+
+        String response = "";
+        try {
+            Command c = Parser.parse(fullCommand);
+            response = c.execute(tasks, ui, storage);
+
+        }  catch (DukeException e) {
+            response = ui.showError(e.getMessage());
+        }
+        return response;
     }
 }

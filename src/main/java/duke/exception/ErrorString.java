@@ -1,4 +1,4 @@
-package duke.error;
+package duke.exception;
 
 /**
  * ErrorString is an enum that contains error strings for Duke.

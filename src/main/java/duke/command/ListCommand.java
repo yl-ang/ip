@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.gui.Ui;
 
 /**
  * ListCommand is a command that handles list command.
@@ -21,8 +21,8 @@ public class ListCommand extends Command {
      * @param storage Storage object containing the methods to load and save.
      */
     @Override
-    public void execute(TaskList taskLst, Ui ui, Storage storage) {
-        ui.showList(taskLst.getTaskLst());
+    public String execute(TaskList taskLst, Ui ui, Storage storage) {
+        return ui.showList(taskLst.getTaskLst());
     }
 
     /**

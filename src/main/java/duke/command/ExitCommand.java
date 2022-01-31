@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.gui.Ui;
 
 /**
  * ExitCommand is a command that handles the exit command.
@@ -21,8 +21,8 @@ public class ExitCommand extends Command {
      * @param storage Storage object containing the methods to load and save.
      */
     @Override
-    public void execute(TaskList taskLst, Ui ui, Storage storage) {
-        ui.showExit();
+    public String execute(TaskList taskLst, Ui ui, Storage storage) {
+        return ui.showExit();
     }
 
     /**

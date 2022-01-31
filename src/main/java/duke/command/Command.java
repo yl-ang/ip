@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.gui.Ui;
 
 /**
  * Command class am abstract class with common command methods.
@@ -17,7 +17,7 @@ public abstract class Command {
      * @param ui Ui object containing the user interface messages and scanner object.
      * @param storage Storage object containing the methods to load and save.
      */
-    public abstract void execute(TaskList taskLst, Ui ui, Storage storage);
+    public abstract String execute(TaskList taskLst, Ui ui, Storage storage);
 
     /**
      * Checks and returns if the command is exit.

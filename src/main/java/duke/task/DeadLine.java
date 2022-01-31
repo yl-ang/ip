@@ -3,8 +3,8 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import duke.error.DukeException;
-import duke.error.ErrorString;
+import duke.exception.DukeException;
+import duke.exception.ErrorString;
 
 /**
  * DeadLine is a task that need to be done before a specific date/time.

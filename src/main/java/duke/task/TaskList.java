@@ -2,8 +2,8 @@ package duke.task;
 
 import java.util.ArrayList;
 
-import duke.error.DukeException;
-import duke.error.ErrorString;
+import duke.exception.DukeException;
+import duke.exception.ErrorString;
 
 /**
  * TaskList contains the task list and handles operations on the list.

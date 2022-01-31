@@ -3,7 +3,7 @@ package duke.command;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.gui.Ui;
 
 /**
  * UnmarkCommand is a command that handles unmark commands.
@@ -32,10 +32,10 @@ public class UnmarkCommand extends Command {
      * @param storage Storage object containing the methods to load and save.
      */
     @Override
-    public void execute(TaskList taskLst, Ui ui, Storage storage) {
+    public String execute(TaskList taskLst, Ui ui, Storage storage) {
         Task selectedTask = taskLst.markOrUnmarked("unmark", this.taskNum);
         storage.save(taskLst.getTaskLst());
-        ui.showUnmark(selectedTask);
+        return ui.showUnmark(selectedTask);
     }
 
     /**

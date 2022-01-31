@@ -29,7 +29,7 @@ public class Duke {
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.showLoadingError();
+            ui.loadingErrorResponse();
             tasks = new TaskList();
         }
     }
@@ -38,19 +38,19 @@ public class Duke {
      * Executes duke object to greet and listen for commands.
      */
     public void run() {
-        ui.showWelcome();
+        ui.welcomeResponse();
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
+                ui.lineResponse(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
-                ui.showError(e.getMessage());
+                ui.errorResponse(e.getMessage());
             } finally {
-                ui.showLine();
+                ui.lineResponse();
             }
         }
     }
@@ -67,7 +67,7 @@ public class Duke {
             response = c.execute(tasks, ui, storage);
 
         }  catch (DukeException e) {
-            response = ui.showError(e.getMessage());
+            response = ui.errorResponse(e.getMessage());
         }
         return response;
     }

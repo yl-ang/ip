@@ -2,10 +2,10 @@ package duke;
 
 import duke.command.Command;
 import duke.exception.DukeException;
+import duke.gui.Ui;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.gui.Ui;
 
 /**
  * Duke is a personal assistant chatbot that helps a person to keep track of tasks.
@@ -43,7 +43,7 @@ public class Duke {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.lineResponse(); // show the divider line ("_______")
+                ui.lineResponse();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
@@ -66,7 +66,7 @@ public class Duke {
             Command c = Parser.parse(fullCommand);
             response = c.execute(tasks, ui, storage);
 
-        }  catch (DukeException e) {
+        } catch (DukeException e) {
             response = ui.errorResponse(e.getMessage());
         }
         return response;

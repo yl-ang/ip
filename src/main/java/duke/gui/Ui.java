@@ -56,26 +56,30 @@ public class Ui {
     }
 
     /**
-     * Displays to the user the specified error message.
+     * Returns the specified error message.
      *
      * @param errorMessage ErrorMessage specified error message.
+     * @return errorMessage ErrorMessage specified error message.
      */
     public String errorResponse(String errorMessage) {
         return errorMessage;
     }
 
     /**
-     * Displays to the user error loading message.
+     * Returns the error loading message.
+     *
+     * @return Error loading message.
      */
     public String loadingErrorResponse() {
         return ErrorString.ERROR_LOADING_ERROR.toString();
     }
 
     /**
-     * Displays to the user the specified deleted task.
+     * Returns the specified deleted task formatted string and number of tasks remaining.
      *
      * @param deletedTask DeletedTask the specified deleted task.
      * @param tasks Tasks the remaining tasks.
+     * @return Formatted deletedTask string.
      */
     public String deletedTasksResponse(Task deletedTask, ArrayList<Task> tasks) {
         String output = String.format("Noted. I've removed this duke.task:\n       %s\n     "
@@ -84,10 +88,11 @@ public class Ui {
     }
 
     /**
-     * Displays to the user the newly added task.
+     * Returns the specified added task formatted string and number of tasks.
      *
      * @param addedTask The newly added task.
      * @param tasks The list of all the tasks after adding.
+     * @return Formatted addedTask string.
      */
     public String addedTasksResponse(Task addedTask, ArrayList<Task> tasks) {
         String output = String.format("Got it. I've added this duke.task:\n       %s\n"
@@ -96,9 +101,10 @@ public class Ui {
     }
 
     /**
-     * Displays the tasks the user have currently.
+     * Returns the formatted string of the tasks the user have currently.
      *
      * @param tasks The list containing the current tasks.
+     * @return Formatted task list string.
      */
     public String listResponse(ArrayList<Task> tasks) {
         String output = "Here are the tasks in your list:\n";
@@ -110,9 +116,10 @@ public class Ui {
     }
 
     /**
-     * Displays the marked task to the user.
+     * Returns the formatted string of the marked task.
      *
      * @param selectedTask SelectedTask task marked by the user.
+     * @return Formatted marked task string.
      */
     public String markResponse(Task selectedTask) {
         String output = "Nice! I've marked this duke.task as done:\n";
@@ -121,9 +128,10 @@ public class Ui {
     }
 
     /**
-     * Displays the unmarked task to the user.
+     * Returns the formatted string of the unmarked task.
      *
      * @param selectedTask SelectedTask task unmarked by the user.
+     * @return Formatted unmarked task string.
      */
     public String unmarkResponse(Task selectedTask) {
         String output = "OK, I've marked this duke.task as not done yet:\n";
@@ -132,9 +140,10 @@ public class Ui {
     }
 
     /**
-     * Displays to the user the tasks that contains the search keyword.
+     * Returns the formatted string of the tasks that contains the search keyword.
      *
      * @param taskLst The current list of tasks.
+     * @return Formatted list of tasks string that contains the search keyword.
      */
     public String findResponse(ArrayList<Task> taskLst) {
         String output = "Here are the matching tasks in your list:\n";
@@ -156,7 +165,9 @@ public class Ui {
     }
 
     /**
-     * Displays to the user exit message.
+     * Returns the bye string.
+     *
+     * @return Bye string.
      */
     public String exitResponse() {
         return "Bye. Hope to see you again soon!\n";

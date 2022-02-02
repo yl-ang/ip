@@ -34,7 +34,7 @@ public class Ui {
     /**
      * Displays to the user the greeting message during startup.
      */
-    public String showWelcome() {
+    public String welcomeResponse() {
 
         String intro = "      ____        _        \n"
                 + "     |  _ \\ _   _| | _____ \n"
@@ -50,7 +50,7 @@ public class Ui {
     /**
      * Displays to the user the line divider.
      */
-    public void showLine() {
+    public void lineResponse() {
         String line = "    ____________________________________________________________\n";
         System.out.print(line);
     }
@@ -60,14 +60,14 @@ public class Ui {
      *
      * @param errorMessage ErrorMessage specified error message.
      */
-    public String showError(String errorMessage) {
+    public String errorResponse(String errorMessage) {
         return errorMessage;
     }
 
     /**
      * Displays to the user error loading message.
      */
-    public String showLoadingError() {
+    public String loadingErrorResponse() {
         return ErrorString.ERROR_LOADING_ERROR.toString();
     }
 
@@ -77,7 +77,7 @@ public class Ui {
      * @param deletedTask DeletedTask the specified deleted task.
      * @param tasks Tasks the remaining tasks.
      */
-    public String showDeletedTask(Task deletedTask, ArrayList<Task> tasks) {
+    public String deletedTasksResponse(Task deletedTask, ArrayList<Task> tasks) {
         String output = String.format("Noted. I've removed this duke.task:\n       %s\n     "
                 + "Now you have %s tasks in the list.\n", deletedTask.toString(), tasks.size());
         return output;
@@ -89,7 +89,7 @@ public class Ui {
      * @param addedTask The newly added task.
      * @param tasks The list of all the tasks after adding.
      */
-    public String showAddedTask(Task addedTask, ArrayList<Task> tasks) {
+    public String addedTasksResponse(Task addedTask, ArrayList<Task> tasks) {
         String output = String.format("Got it. I've added this duke.task:\n       %s\n"
                 + "Now you have %s tasks in the list.\n", addedTask.toString(), tasks.size());
         return output;
@@ -100,7 +100,7 @@ public class Ui {
      *
      * @param tasks The list containing the current tasks.
      */
-    public String showList(ArrayList<Task> tasks) {
+    public String listResponse(ArrayList<Task> tasks) {
         String output = "Here are the tasks in your list:\n";
         int numItems = tasks.size();
         for (int i = 0; i < numItems; i++) {
@@ -114,7 +114,7 @@ public class Ui {
      *
      * @param selectedTask SelectedTask task marked by the user.
      */
-    public String showMark(Task selectedTask) {
+    public String markResponse(Task selectedTask) {
         String output = "Nice! I've marked this duke.task as done:\n";
         output += selectedTask.toString() + "\n";
         return output;
@@ -125,7 +125,7 @@ public class Ui {
      *
      * @param selectedTask SelectedTask task unmarked by the user.
      */
-    public String showUnmark(Task selectedTask) {
+    public String unmarkResponse(Task selectedTask) {
         String output = "OK, I've marked this duke.task as not done yet:\n";
         output += selectedTask.toString() + "\n";
         return output;
@@ -136,7 +136,7 @@ public class Ui {
      *
      * @param taskLst The current list of tasks.
      */
-    public String showFind(ArrayList<Task> taskLst) {
+    public String findResponse(ArrayList<Task> taskLst) {
         String output = "Here are the matching tasks in your list:\n";
         int numItems = taskLst.size();
         for (int i = 0; i < numItems; i++) {
@@ -158,7 +158,7 @@ public class Ui {
     /**
      * Displays to the user exit message.
      */
-    public String showExit() {
+    public String exitResponse() {
         return "Bye. Hope to see you again soon!\n";
     }
 }

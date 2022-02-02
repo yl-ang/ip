@@ -2,13 +2,13 @@ package duke.command;
 
 import duke.exception.DukeException;
 import duke.exception.ErrorString;
+import duke.gui.Ui;
 import duke.storage.Storage;
 import duke.task.DeadLine;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
-import duke.gui.Ui;
 
 /**
  * AddCommand is a command that handles add instructions.
@@ -112,6 +112,7 @@ public class AddCommand extends Command {
      * @param taskLst TaskLst object containing the current tasks.
      * @param ui Ui object containing the user interface messages and scanner object.
      * @param storage Storage object containing the methods to load and save.
+     * @return Formatted response from executing command.
      */
     @Override
     public String execute(TaskList taskLst, Ui ui, Storage storage) {

@@ -1,9 +1,9 @@
 package duke.command;
 
+import duke.gui.Ui;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.gui.Ui;
 
 /**
  * UnmarkCommand is a command that handles unmark commands.
@@ -30,6 +30,7 @@ public class UnmarkCommand extends Command {
      * @param taskLst TaskLst object containing the current tasks.
      * @param ui Ui object containing the user interface messages and scanner object.
      * @param storage Storage object containing the methods to load and save.
+     * @return Formatted response from executing command.
      */
     @Override
     public String execute(TaskList taskLst, Ui ui, Storage storage) {

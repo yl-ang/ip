@@ -4,11 +4,16 @@ import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.exception.ErrorString;
+import duke.gui.Ui;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.gui.Ui;
 
+/**
+ * FindCommand is a command that handles the find command.
+ *
+ * @author yl-ang
+ */
 public class FindCommand extends Command {
 
     private boolean isExit = false;
@@ -28,12 +33,25 @@ public class FindCommand extends Command {
         }
     }
 
+    /**
+     * Executes FindCommand with the objects supplied.
+     *
+     * @param taskLst TaskLst object containing the current tasks.
+     * @param ui Ui object containing the user interface messages and scanner object.
+     * @param storage Storage object containing the methods to load and save.
+     * @return Formatted response from executing command.
+     */
     @Override
     public String execute(TaskList taskLst, Ui ui, Storage storage) {
         ArrayList<Task> tasks = taskLst.findTask(keyword);
         return ui.findResponse(tasks);
     }
 
+    /**
+     * Checks and returns the boolean whether if command is exit.
+     *
+     * @return Boolean if command is exit.
+     */
     @Override
     public boolean isExit() {
         return isExit;

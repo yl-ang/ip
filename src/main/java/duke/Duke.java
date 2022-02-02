@@ -61,7 +61,7 @@ public class Duke {
      */
     public String getResponse(String fullCommand) {
 
-        String response = "";
+        String response;
         try {
             Command c = Parser.parse(fullCommand);
             response = c.execute(tasks, ui, storage);

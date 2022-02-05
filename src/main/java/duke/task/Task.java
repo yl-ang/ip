@@ -39,9 +39,9 @@ public class Task {
 
         if (!this.isDone) {
             this.isDone = true;
-        } else {
-            throw new DukeException(ErrorString.ERROR_TASK_MARKED_ALREADY.toString());
+            return;
         }
+        throw new DukeException(ErrorString.ERROR_TASK_MARKED_ALREADY.toString());
     }
 
     /**
@@ -53,9 +53,9 @@ public class Task {
 
         if (this.isDone) {
             this.isDone = false;
-        } else {
-            throw new DukeException(ErrorString.ERROR_TASK_UNMARKED_ALREADY.toString());
+            return;
         }
+        throw new DukeException(ErrorString.ERROR_TASK_UNMARKED_ALREADY.toString());
     }
 
     /**

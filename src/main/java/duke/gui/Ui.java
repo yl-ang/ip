@@ -23,39 +23,6 @@ public class Ui {
     }
 
     /**
-     * Displays to the user the specified string.
-     *
-     * @param toDisplay ToDisplay the specified string.
-     */
-    public void echo(String toDisplay) {
-        System.out.print(toDisplay);
-    }
-
-    /**
-     * Displays to the user the greeting message during startup.
-     */
-    public String welcomeResponse() {
-
-        String intro = "      ____        _        \n"
-                + "     |  _ \\ _   _| | _____ \n"
-                + "     | | | | | | | |/ / _ \\\n"
-                + "     | |_| | |_| |   <  __/\n"
-                + "     |____/ \\__,_|_|\\_\\___|\n";
-        intro += "    Hello! I'm Bobby\n";
-        intro += "    What can I do for you?\n";
-
-        return intro;
-    }
-
-    /**
-     * Displays to the user the line divider.
-     */
-    public void lineResponse() {
-        String line = "    ____________________________________________________________\n";
-        System.out.print(line);
-    }
-
-    /**
      * Returns the specified error message.
      *
      * @param errorMessage ErrorMessage specified error message.
@@ -152,16 +119,6 @@ public class Ui {
             output += (i + 1) + "." + taskLst.get(i).toString() + "\n";
         }
         return output;
-    }
-
-    /**
-     * Reads user input from stdin.
-     *
-     * @return User input from stdin.
-     */
-    public String readCommand() {
-        String input = this.sc.nextLine();
-        return input;
     }
 
     /**

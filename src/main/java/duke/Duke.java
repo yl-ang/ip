@@ -35,31 +35,6 @@ public class Duke {
     }
 
     /**
-     * Executes duke object to greet and listen for commands.
-     */
-    public void run() {
-        ui.welcomeResponse();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.lineResponse();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.errorResponse(e.getMessage());
-            } finally {
-                ui.lineResponse();
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/duke.txt").run();
-    }
-
-    /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */

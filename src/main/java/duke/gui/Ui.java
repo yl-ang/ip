@@ -82,7 +82,7 @@ public class Ui {
      * @return Formatted deletedTask string.
      */
     public String deletedTasksResponse(Task deletedTask, ArrayList<Task> tasks) {
-        String output = String.format("Noted. I've removed this duke.task:\n       %s\n     "
+        String output = String.format("Noted. I've removed this task:\n       %s\n     "
                 + "Now you have %s tasks in the list.\n", deletedTask.toString(), tasks.size());
         return output;
     }
@@ -95,7 +95,7 @@ public class Ui {
      * @return Formatted addedTask string.
      */
     public String addedTasksResponse(Task addedTask, ArrayList<Task> tasks) {
-        String output = String.format("Got it. I've added this duke.task:\n       %s\n"
+        String output = String.format("Got it. I've added this task:\n       %s\n"
                 + "Now you have %s tasks in the list.\n", addedTask.toString(), tasks.size());
         return output;
     }
@@ -122,7 +122,7 @@ public class Ui {
      * @return Formatted marked task string.
      */
     public String markResponse(Task selectedTask) {
-        String output = "Nice! I've marked this duke.task as done:\n";
+        String output = "Nice! I've marked this task as done:\n";
         output += selectedTask.toString() + "\n";
         return output;
     }
@@ -134,7 +134,7 @@ public class Ui {
      * @return Formatted unmarked task string.
      */
     public String unmarkResponse(Task selectedTask) {
-        String output = "OK, I've marked this duke.task as not done yet:\n";
+        String output = "OK, I've marked this task as not done yet:\n";
         output += selectedTask.toString() + "\n";
         return output;
     }

@@ -49,10 +49,6 @@ public class Storage {
 
         FileWriter myWriter;
         try {
-            // FileWriter handles the missing file duke.txt,
-            // if the file does not exist, it will create it
-            // if the file exists, we will overwrite it with the updates duke.task
-
             myWriter = new FileWriter(this.filePath, false);
             myWriter.write(output);
             myWriter.close();
@@ -69,46 +65,45 @@ public class Storage {
     public ArrayList<Task> load() throws DukeException {
 
         File file = new File (this.filePath);
-
-
         ArrayList<Task> taskLst = new ArrayList<>();
 
         FileReader myReader;
-        if (file.exists()) {
-            try {
-                myReader = new FileReader(this.filePath);
-                BufferedReader inStream = new BufferedReader(myReader);
-
-                String inString;
-
-
-                while ((inString = inStream.readLine()) != null) {
-                    String[] taskString = inString.split(" \\| ");
-
-                    Task currTask = null;
-
-                    switch(taskString[0]) {
-                    case "T":
-                        currTask = new ToDo(taskString[2]);
-                        break;
-                    case "D":
-                        currTask = new DeadLine(taskString[2], taskString[3]);
-                        break;
-                    default:
-                        currTask = new Event(taskString[2], taskString[3]);
-                        break;
-                    }
-
-                    if (taskString[1].equals("1")) {
-                        currTask.markAsDone();
-                    }
-
-                    taskLst.add(currTask);
-                }
-            } catch (IOException e) {
-                throw new DukeException(ErrorString.ERROR_FILE_IO_ERROR.toString());
-            }
+        if (!file.exists()) {
+            return taskLst;
         }
+
+        try {
+            myReader = new FileReader(this.filePath);
+            BufferedReader inStream = new BufferedReader(myReader);
+
+            String inString;
+            while ((inString = inStream.readLine()) != null) {
+                String[] taskString = inString.split(" \\| ");
+
+                Task currTask;
+
+                switch(taskString[0]) {
+                case "T":
+                    currTask = new ToDo(taskString[2]);
+                    break;
+                case "D":
+                    currTask = new DeadLine(taskString[2], taskString[3]);
+                    break;
+                default:
+                    currTask = new Event(taskString[2], taskString[3]);
+                    break;
+                }
+
+                if (taskString[1].equals("1")) {
+                    currTask.markAsDone();
+                }
+                taskLst.add(currTask);
+            }
+
+        } catch (IOException e) {
+            throw new DukeException(ErrorString.ERROR_FILE_IO_ERROR.toString());
+        }
+
         return taskLst;
     }
 }

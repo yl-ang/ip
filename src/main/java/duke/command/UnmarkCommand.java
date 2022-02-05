@@ -36,7 +36,9 @@ public class UnmarkCommand extends Command {
     public String execute(TaskList taskLst, Ui ui, Storage storage) {
         Task selectedTask = taskLst.markOrUnmarked("unmark", this.taskNum);
         storage.save(taskLst.getTaskLst());
-        return ui.unmarkResponse(selectedTask);
+        String response = ui.unmarkResponse(selectedTask);
+        assert response != null : "Unmarked response should not be null";
+        return response;
     }
 
     /**

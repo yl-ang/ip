@@ -36,7 +36,9 @@ public class DeleteCommand extends Command {
     public String execute(TaskList taskLst, Ui ui, Storage storage) {
         Task task = taskLst.deleteTask(this.taskNum);
         storage.save(taskLst.getTaskLst());
-        return ui.deletedTasksResponse(task, taskLst.getTaskLst());
+        String response = ui.deletedTasksResponse(task, taskLst.getTaskLst());
+        assert response != null : "Delete response should not be null";
+        return response;
     }
 
     /**

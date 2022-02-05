@@ -88,10 +88,9 @@ public class AddCommand extends Command {
         int startIndex = data.indexOf(start) + start.length();
         if (timeCommand == null) {
             return data.substring(startIndex);
-        } else {
-            int endIndex = data.indexOf(timeCommand);
-            return data.substring(startIndex, endIndex - 1);
         }
+        int endIndex = data.indexOf(timeCommand);
+        return data.substring(startIndex, endIndex - 1);
     }
 
     /**

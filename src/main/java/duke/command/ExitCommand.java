@@ -23,7 +23,9 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(TaskList taskLst, Ui ui, Storage storage) {
-        return ui.exitResponse();
+        String response = ui.exitResponse();
+        assert response != null : "Exit response should not be null";
+        return response;
     }
 
     /**

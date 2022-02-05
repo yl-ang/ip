@@ -95,6 +95,7 @@ public class Ui {
      * @return Formatted addedTask string.
      */
     public String addedTasksResponse(Task addedTask, ArrayList<Task> tasks) {
+        assert addedTask != null : "addedTask should not be null";
         String output = String.format("Got it. I've added this task:\n       %s\n"
                 + "Now you have %s tasks in the list.\n", addedTask.toString(), tasks.size());
         return output;
@@ -107,6 +108,7 @@ public class Ui {
      * @return Formatted task list string.
      */
     public String listResponse(ArrayList<Task> tasks) {
+        assert tasks != null : "tasks should not be null";
         String output = "Here are the tasks in your list:\n";
         int numItems = tasks.size();
         for (int i = 0; i < numItems; i++) {
@@ -122,6 +124,7 @@ public class Ui {
      * @return Formatted marked task string.
      */
     public String markResponse(Task selectedTask) {
+        assert selectedTask != null : "selectedTask to be marked should not be null";
         String output = "Nice! I've marked this task as done:\n";
         output += selectedTask.toString() + "\n";
         return output;
@@ -134,6 +137,7 @@ public class Ui {
      * @return Formatted unmarked task string.
      */
     public String unmarkResponse(Task selectedTask) {
+        assert selectedTask != null : "selectedTask to be unmarked should not be null";
         String output = "OK, I've marked this task as not done yet:\n";
         output += selectedTask.toString() + "\n";
         return output;
@@ -146,6 +150,7 @@ public class Ui {
      * @return Formatted list of tasks string that contains the search keyword.
      */
     public String findResponse(ArrayList<Task> taskLst) {
+        assert taskLst != null : "taskLst should not be null";
         String output = "Here are the matching tasks in your list:\n";
         int numItems = taskLst.size();
         for (int i = 0; i < numItems; i++) {

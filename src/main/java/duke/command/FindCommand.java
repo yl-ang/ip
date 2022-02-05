@@ -44,7 +44,9 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList taskLst, Ui ui, Storage storage) {
         ArrayList<Task> tasks = taskLst.findTask(keyword);
-        return ui.findResponse(tasks);
+        String response = ui.findResponse(tasks);
+        assert response != null : "Find response should not be null";
+        return response;
     }
 
     /**

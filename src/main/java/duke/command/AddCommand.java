@@ -118,7 +118,9 @@ public class AddCommand extends Command {
     public String execute(TaskList taskLst, Ui ui, Storage storage) {
         taskLst.addToList(this.task);
         storage.save(taskLst.getTaskLst());
-        return ui.addedTasksResponse(this.task, taskLst.getTaskLst());
+        String response = ui.addedTasksResponse(this.task, taskLst.getTaskLst());
+        assert response != null : "Add response should not be null";
+        return response;
     }
 
     /**

@@ -36,7 +36,9 @@ public class MarkCommand extends Command {
     public String execute(TaskList taskLst, Ui ui, Storage storage) {
         Task selectedTask = taskLst.markOrUnmarked("mark", this.taskNum);
         storage.save(taskLst.getTaskLst());
-        return ui.markResponse(selectedTask);
+        String response = ui.markResponse(selectedTask);
+        assert response != null : "Mark response should not be null";
+        return response;
     }
 
     /**

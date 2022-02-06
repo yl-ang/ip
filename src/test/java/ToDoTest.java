@@ -11,9 +11,8 @@ public class ToDoTest {
         assertEquals("[T][ ] coding", new ToDo("coding").toString());
     }
 
+    @Test
     public void testToStringForStorage() {
-        assertEquals("T | 0 | coding", new ToDo("coding").toString());
+        assertEquals("T | 0 | coding", new ToDo("coding").toStringForStorage());
     }
-
-
 }

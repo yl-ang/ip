@@ -127,6 +127,18 @@ public class Ui {
     }
 
     /**
+     * Returns the formatted string of the updated task containing the updated information.
+     *
+     * @param task The updated task.
+     * @return Formatted string of the updated task.
+     */
+    public String updateResponse(Task task) {
+        String output = "I've updated this task:\n";
+        output += task.toString() + "\n";
+        return output;
+    }
+
+    /**
      * Returns the bye string.
      *
      * @return Bye string.

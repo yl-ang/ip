@@ -8,6 +8,7 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
+import duke.command.UpdateCommand;
 import duke.exception.DukeException;
 import duke.exception.ErrorString;
 
@@ -44,7 +45,7 @@ public class Parser {
 
             currCommand = new MarkCommand(i);
 
-        } else if (fullCommand.startsWith("unmark")) {
+        } else if (fullCommand.startsWith("unmark ")) {
 
             int i;
             try {
@@ -57,7 +58,7 @@ public class Parser {
 
             currCommand = new UnmarkCommand(i);
 
-        } else if (fullCommand.startsWith("delete")) {
+        } else if (fullCommand.startsWith("delete ")) {
 
             int i;
 
@@ -70,16 +71,18 @@ public class Parser {
             }
 
             currCommand = new DeleteCommand(i);
-        } else if (fullCommand.startsWith("todo")) {
+        } else if (fullCommand.startsWith("todo ")) {
             currCommand = new AddCommand(fullCommand, "todo");
-        } else if (fullCommand.startsWith("deadline")) {
+        } else if (fullCommand.startsWith("deadline ")) {
             currCommand = new AddCommand(fullCommand, "deadline");
-        } else if (fullCommand.startsWith("event")) {
+        } else if (fullCommand.startsWith("event ")) {
             currCommand = new AddCommand(fullCommand, "event");
-        } else if (fullCommand.startsWith("find")) {
+        } else if (fullCommand.startsWith("find ")) {
             currCommand = new FindCommand(fullCommand);
         } else if (fullCommand.startsWith("bye")) {
             currCommand = new ExitCommand();
+        } else if (fullCommand.startsWith("update ")) {
+            currCommand = new UpdateCommand(fullCommand);
         } else {
             throw new DukeException(ErrorString.ERROR_INVALID_COMMAND.toString());
         }

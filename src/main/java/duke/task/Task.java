@@ -76,4 +76,8 @@ public class Task {
     public String toStringForStorage() {
         return "";
     }
+
+    public void updateDescription(String description) {
+        this.description = description;
+    }
 }

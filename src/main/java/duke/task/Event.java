@@ -1,5 +1,12 @@
 package duke.task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
+import duke.exception.DukeException;
+import duke.exception.ErrorString;
+
+
 /**
  * Event is a task that start at a specific time and ends at a specific time.
  *
@@ -7,7 +14,7 @@ package duke.task;
  */
 public class Event extends Task {
 
-    protected String at;
+    protected LocalDate at;
 
     /**
      * Constructs an Event object containing the user specified description and date.
@@ -17,7 +24,7 @@ public class Event extends Task {
      */
     public Event(String description, String at) {
         super(description);
-        this.at = at;
+        this.at = LocalDate.parse(at);
     }
 
     /**
@@ -39,5 +46,14 @@ public class Event extends Task {
     public String toStringForStorage() {
         int isDone = super.isDone ? 1 : 0;
         return "E | " + isDone + " | " + this.description + " | " + this.at;
+    }
+
+    @Override
+    public void updateDate(String date) {
+        try {
+            this.at = LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(ErrorString.ERROR_INVALID_DEADLINE_DATE_FORMAT.toString());
+        }
     }
 }

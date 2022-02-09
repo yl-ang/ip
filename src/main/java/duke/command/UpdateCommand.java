@@ -12,6 +12,7 @@ public class UpdateCommand extends Command {
     private boolean isExit = false;
     private int taskNum;
     private String desc;
+    private String date;
 
     /**
      * Constructs UpdateCommand object with the supplied user input.
@@ -22,7 +23,7 @@ public class UpdateCommand extends Command {
     public UpdateCommand(String data) throws DukeException {
         String[] temp = data.split(" ");
 
-        if (temp.length == 1 || temp.length == 2) {
+        if (temp.length == 1) {
             throw new DukeException(ErrorString.ERROR_EMPTY_UPDATE.toString());
         }
 
@@ -39,9 +40,19 @@ public class UpdateCommand extends Command {
 
             if (smallUpdate.startsWith("d/") && smallUpdate.length() > 2) {
                 this.desc = smallUpdate.substring(2);
-            } else {
+            } else if (smallUpdate.startsWith("d/") && smallUpdate.length() <= 2) {
                 throw new DukeException(ErrorString.ERROR_EMPTY_DESC_UPDATE.toString());
             }
+
+            if (smallUpdate.startsWith("t/") && smallUpdate.length() > 2) {
+                this.date = smallUpdate.substring(2);
+            } else if (smallUpdate.startsWith("t/") && smallUpdate.length() <= 2) {
+                throw new DukeException(ErrorString.ERROR_EMPTY_DATE_UPDATE.toString());
+            }
+        }
+
+        if (this.desc == null && this.date == null) {
+            throw new DukeException(ErrorString.ERROR_EMPTY_UPDATE.toString());
         }
     }
 
@@ -57,6 +68,7 @@ public class UpdateCommand extends Command {
     public String execute(TaskList taskLst, Ui ui, Storage storage) {
         Task selectedTask = taskLst.retrieveTask(this.taskNum);
         selectedTask.updateDescription(this.desc);
+        selectedTask.updateDate(this.date);
         storage.save(taskLst.getTaskLst());
         String response = ui.updateResponse(selectedTask);
         return response;

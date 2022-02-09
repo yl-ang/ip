@@ -52,4 +52,13 @@ public class DeadLine extends Task {
         int isDone = super.isDone ? 1 : 0;
         return "D | " + isDone + " | " + this.description + " | " + this.by;
     }
+
+    @Override
+    public void updateDate(String date) throws DukeException {
+        try {
+            this.by = LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(ErrorString.ERROR_INVALID_DEADLINE_DATE_FORMAT.toString());
+        }
+    }
 }

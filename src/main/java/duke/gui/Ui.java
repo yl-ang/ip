@@ -49,7 +49,7 @@ public class Ui {
      * @return Formatted deletedTask string.
      */
     public String deletedTasksResponse(Task deletedTask, ArrayList<Task> tasks) {
-        String output = String.format("Noted. I've removed this task:\n       %s\n     "
+        String output = String.format("Noted. I've removed this task:\n       %s\n"
                 + "Now you have %s tasks in the list.\n", deletedTask.toString(), tasks.size());
         return output;
     }
@@ -105,7 +105,7 @@ public class Ui {
      */
     public String unmarkResponse(Task selectedTask) {
         assert selectedTask != null : "selectedTask to be unmarked should not be null";
-        String output = "OK, I've marked this task as not done yet:\n";
+        String output = "OK, I've marked this task as not done:\n";
         output += selectedTask.toString() + "\n";
         return output;
     }
@@ -121,7 +121,7 @@ public class Ui {
         String output = "Here are the matching tasks in your list:\n";
         int numItems = taskLst.size();
         for (int i = 0; i < numItems; i++) {
-            output += (i + 1) + "." + taskLst.get(i).toString() + "\n";
+            output += (i + 1) + ". " + taskLst.get(i).toString() + "\n";
         }
         return output;
     }

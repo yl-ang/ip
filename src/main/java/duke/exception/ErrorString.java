@@ -28,7 +28,8 @@ public enum ErrorString {
     ERROR_EMPTY_FIND_KEYWORD("OOPS!!! Please provide a search term for find.\n"),
     ERROR_EMPTY_UPDATE("OOPS!!! Please provide information to update.\n"),
     ERROR_NOT_INT_UPDATE("OOPS!!! Please provide a valid task number to update.\n"),
-    ERROR_EMPTY_DESC_UPDATE("OOPS!!! Please provide description to update.\n");
+    ERROR_EMPTY_DESC_UPDATE("OOPS!!! Please a description to update.\n"),
+    ERROR_EMPTY_DATE_UPDATE("OOPS!!! Please a date to update.\n");
 
     private String errorString;
 

@@ -77,7 +77,19 @@ public class Task {
         return "";
     }
 
+    /**
+     * Updates the task description based on supplied description.
+     *
+     * @param description Description to update to.
+     */
     public void updateDescription(String description) {
-        this.description = description;
+
+        if (!(description == null)) {
+            this.description = description;
+        }
+    }
+
+    public void updateDate(String date) {
+
     }
 }

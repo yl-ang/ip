@@ -40,6 +40,10 @@ Allows you to add a deadline task.
 
 Allows you to add an event task.
 
+### Feature-list
+
+Allows you to list all your current tasks.
+
 ### Feature-update
 
 Allows you to update an existing task.

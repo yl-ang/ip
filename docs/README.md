@@ -125,6 +125,23 @@ Now you have 1 task in the list.
 ```
 
 
+### `list` - Lists all the current tasks in Duke.
+
+Displays all the tasks the user have currently.
+
+Format `list`
+
+Example of usage:
+```list```
+
+Expected outcome:
+```
+Here are the tasks in your list:
+1. [E][] GET1020 Midterm (at:
+2022-02-28)
+```
+
+
 ### `update` - Updates an existing task based on the task number.
 
 Updates an existing task's description and date.

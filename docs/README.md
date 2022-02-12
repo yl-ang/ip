@@ -4,9 +4,9 @@ Duke is a **desktop app** with a **graphical User Interface (GUI)** and a Person
 person to keep track of various things.
 
 ## Table of content
-1. [Quick Start](#Quick Start)
-2. [Features](#Features)
-3. [Usage](#Usage)
+1. [Quick Start](#quick-start)
+2. [Features](#features)
+3. [Usage](#usage)
 
 ## Quick Start
 1. Ensure that you have ``Java 11`` installed on your Computer.
@@ -22,7 +22,9 @@ Some example commands you can try out:
 * **`deadline`**`user stories for tP /by 2022-02-15` : Adds a deadline task `user stories for tP` to be done
 by `15/02/2022` Duke.
 
-5. Refer to the [Features](#Features) below for details of each command.
+![UI Main](/ip/Ui.png)
+
+5. Refer to the [Features](#features) below for details of each command.
 
 ## Features 
 

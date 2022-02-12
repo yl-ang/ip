@@ -29,12 +29,14 @@ public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
 
         Command currCommand;
+        String[] commandString = fullCommand.split(" ");
+        int i;
 
-        if (fullCommand.equals("list")) {
+        switch(commandString[0]) {
+        case "list":
             currCommand = new ListCommand();
-        } else if (fullCommand.startsWith("mark")) {
-
-            int i;
+            break;
+        case "mark":
             try {
                 i = Integer.parseInt(fullCommand.substring("mark".length() + 1));
             } catch (IndexOutOfBoundsException e) {
@@ -42,12 +44,9 @@ public class Parser {
             } catch (NumberFormatException e) {
                 throw new DukeException(ErrorString.ERROR_NOT_INT_MARK.toString());
             }
-
             currCommand = new MarkCommand(i);
-
-        } else if (fullCommand.startsWith("unmark ")) {
-
-            int i;
+            break;
+        case "unmark":
             try {
                 i = Integer.parseInt(fullCommand.substring("unmark".length() + 1));
             } catch (IndexOutOfBoundsException e) {
@@ -57,11 +56,8 @@ public class Parser {
             }
 
             currCommand = new UnmarkCommand(i);
-
-        } else if (fullCommand.startsWith("delete ")) {
-
-            int i;
-
+            break;
+        case "delete":
             try {
                 i = Integer.parseInt(fullCommand.substring("delete".length() + 1));
             } catch (IndexOutOfBoundsException e) {
@@ -71,22 +67,28 @@ public class Parser {
             }
 
             currCommand = new DeleteCommand(i);
-        } else if (fullCommand.startsWith("todo ")) {
+            break;
+        case "todo":
             currCommand = new AddCommand(fullCommand, "todo");
-        } else if (fullCommand.startsWith("deadline ")) {
+            break;
+        case "deadline":
             currCommand = new AddCommand(fullCommand, "deadline");
-        } else if (fullCommand.startsWith("event ")) {
+            break;
+        case "event":
             currCommand = new AddCommand(fullCommand, "event");
-        } else if (fullCommand.startsWith("find ")) {
+            break;
+        case "find":
             currCommand = new FindCommand(fullCommand);
-        } else if (fullCommand.startsWith("bye")) {
-            currCommand = new ExitCommand();
-        } else if (fullCommand.startsWith("update ")) {
+            break;
+        case "update":
             currCommand = new UpdateCommand(fullCommand);
-        } else {
+            break;
+        case "bye":
+            currCommand = new ExitCommand();
+            break;
+        default:
             throw new DukeException(ErrorString.ERROR_INVALID_COMMAND.toString());
         }
-
         return currCommand;
     }
 }

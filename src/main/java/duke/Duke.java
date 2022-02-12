@@ -35,8 +35,10 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Retrieves the response after parsing and executing the full command.
+     *
+     * @param fullCommand The user input command.
+     * @ String Response to be displayed in GUI.
      */
     public String getResponse(String fullCommand) {
 

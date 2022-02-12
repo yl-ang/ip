@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.extract.Extract;
 import duke.exception.DukeException;
 import duke.exception.ErrorString;
 import duke.gui.Ui;
@@ -38,7 +39,7 @@ public class AddCommand extends Command {
                 throw new DukeException(ErrorString.ERROR_EMPTY_TODO_DESC.toString());
             }
 
-            String desc = extractDesc(data, "todo ", null);
+            String desc = Extract.extractDesc(data, "todo ", null);
             task = new ToDo(desc);
 
         } else if (taskCommand.equals("deadline")) {
@@ -51,8 +52,8 @@ public class AddCommand extends Command {
                 throw new DukeException(ErrorString.ERROR_EMPTY_DEADLINE_DATE.toString());
             }
 
-            String desc = extractDesc(data, "deadline ", "/by");
-            String date = extractTime(data, "/by ");
+            String desc = Extract.extractDesc(data, "deadline ", "/by");
+            String date = Extract.extractTime(data, "/by ", null);
 
             task = new DeadLine(desc, date);
 
@@ -68,42 +69,14 @@ public class AddCommand extends Command {
                 throw new DukeException(ErrorString.ERROR_EMPTY_EVENT_DATE.toString());
             }
 
-            String desc = extractDesc(data, "event ", "/at");
-            String date = extractTime(data, "/at ");
+            String desc = Extract.extractDesc(data, "event ", "/at");
+            String date = Extract.extractTime(data, "/at ", null);
             task = new Event(desc, date);
         }
 
         this.task = task;
     }
 
-    /**
-     * Extracts the task description from the user input.
-     *
-     * @param data Data the full user input.
-     * @param start Starting string to extract from.
-     * @param timeCommand Stopping string to extract to.
-     * @return Extracted task description from user input.
-     */
-    public String extractDesc(String data, String start, String timeCommand) {
-        int startIndex = data.indexOf(start) + start.length();
-        if (timeCommand == null) {
-            return data.substring(startIndex);
-        }
-        int endIndex = data.indexOf(timeCommand);
-        return data.substring(startIndex, endIndex - 1);
-    }
-
-    /**
-     * Extracts the task date and time from the user input.
-     *
-     * @param data Full user input.
-     * @param timeCommand Starting time and date to extract from.
-     * @return Extracted date dnd time from user input.
-     */
-    public String extractTime(String data, String timeCommand) {
-        int startIndex = data.indexOf(timeCommand) + timeCommand.length();
-        return data.substring(startIndex);
-    }
 
     /**
      * Executes AddCommand with the objects supplied.

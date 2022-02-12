@@ -1,5 +1,8 @@
 package duke.task;
 
+import duke.exception.DukeException;
+import duke.exception.ErrorString;
+
 /**
  * ToDo is a task without any date/time attached to it.
  *
@@ -35,5 +38,13 @@ public class ToDo extends Task {
     public String toStringForStorage() {
         int isDone = super.isDone ? 1 : 0;
         return "T | " + isDone + " | " + this.description;
+    }
+
+    @Override
+    public void updateDate(String date) throws DukeException {
+
+        if (date != null) {
+            throw new DukeException(ErrorString.ERROR_TODO_HAS_NO_DATE.toString());
+        }
     }
 }

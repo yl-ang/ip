@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.extract.Extract;
 import duke.exception.DukeException;
 import duke.exception.ErrorString;
 import duke.gui.Ui;
@@ -35,23 +36,20 @@ public class UpdateCommand extends Command {
         }
 
         this.taskNum = taskNum;
-        for (int i = 2; i < temp.length; i++) {
-            String smallUpdate = temp[i];
 
-            if (smallUpdate.startsWith("d/") && smallUpdate.length() > 2) {
-                this.desc = smallUpdate.substring(2);
-            } else if (smallUpdate.startsWith("d/") && smallUpdate.length() <= 2) {
-                throw new DukeException(ErrorString.ERROR_EMPTY_DESC_UPDATE.toString());
+        if (data.contains("d/") && data.contains("t/")) {
+            if (data.indexOf("d/") < data.indexOf("t/")) {
+                this.desc = Extract.extractDesc(data, "d/", "t/");
+                this.date = Extract.extractTime(data, "t/", null);
+            } else {
+                this.desc = Extract.extractDesc(data, "d/", null);
+                this.date = Extract.extractTime(data, "t/", "d/");
             }
-
-            if (smallUpdate.startsWith("t/") && smallUpdate.length() > 2) {
-                this.date = smallUpdate.substring(2);
-            } else if (smallUpdate.startsWith("t/") && smallUpdate.length() <= 2) {
-                throw new DukeException(ErrorString.ERROR_EMPTY_DATE_UPDATE.toString());
-            }
-        }
-
-        if (this.desc == null && this.date == null) {
+        } else if (data.contains("d/")) {
+            this.desc = Extract.extractDesc(data, "d/", null);
+        } else if (data.contains("t/")) {
+            this.date = Extract.extractTime(data, "t/", null);
+        } else {
             throw new DukeException(ErrorString.ERROR_EMPTY_UPDATE.toString());
         }
     }

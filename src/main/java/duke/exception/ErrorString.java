@@ -29,7 +29,9 @@ public enum ErrorString {
     ERROR_EMPTY_UPDATE("OOPS!!! Please provide information to update.\n"),
     ERROR_NOT_INT_UPDATE("OOPS!!! Please provide a valid task number to update.\n"),
     ERROR_EMPTY_DESC_UPDATE("OOPS!!! Please a description to update.\n"),
-    ERROR_EMPTY_DATE_UPDATE("OOPS!!! Please a date to update.\n");
+    ERROR_EMPTY_DATE_UPDATE("OOPS!!! Please a date to update.\n"),
+    ERROR_TODO_HAS_NO_DATE("OOPS!!! todo tasks does not have date, please do not supply date to update todo tasks.\n"),
+    ERROR_STORAGE_INVALID_TASK("OOPS!!!! The tasks to be loaded from duke.txt has invalid format.\n");
 
     private String errorString;
 

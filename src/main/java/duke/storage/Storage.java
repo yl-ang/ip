@@ -89,9 +89,11 @@ public class Storage {
                 case "D":
                     currTask = new DeadLine(taskString[2], taskString[3]);
                     break;
-                default:
+                case "E":
                     currTask = new Event(taskString[2], taskString[3]);
                     break;
+                default:
+                    throw new DukeException(ErrorString.ERROR_STORAGE_INVALID_TASK.toString());
                 }
 
                 if (taskString[1].equals("1")) {

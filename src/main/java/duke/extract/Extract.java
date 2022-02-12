@@ -1,5 +1,10 @@
 package duke.extract;
 
+/**
+ * Extract for Duke. Handles description, date and time extraction from user input.
+ *
+ * @author yl-ang
+ */
 public class Extract {
 
     /**
@@ -24,6 +29,7 @@ public class Extract {
      *
      * @param data Full user input.
      * @param timeCommand Starting time and date to extract from.
+     * @param descriptionCommand Stopping string to extract to.
      * @return Extracted date dnd time from user input.
      */
     public static String extractTime(String data, String timeCommand, String descriptionCommand) {

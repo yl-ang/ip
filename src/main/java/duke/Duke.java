@@ -38,7 +38,7 @@ public class Duke {
      * Retrieves the response after parsing and executing the full command.
      *
      * @param fullCommand The user input command.
-     * @ String Response to be displayed in GUI.
+     * @return String Response to be displayed in GUI.
      */
     public String getResponse(String fullCommand) {
 

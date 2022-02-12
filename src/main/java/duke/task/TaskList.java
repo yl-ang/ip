@@ -43,7 +43,7 @@ public class TaskList {
      *
      * @param i I index of the task to be retrieved from the list of tasks.
      * @return Retrieved task based on index i.
-     * @throws DukeException if i <= 0 or i >= size of taskLst.
+     * @throws DukeException if i less than 0 or greater than size of taskLst.
      */
     public Task retrieveTask(int i) throws DukeException {
         Task selectedTask;

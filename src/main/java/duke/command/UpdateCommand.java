@@ -8,6 +8,11 @@ import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * UpdateCommand is a command that handles the update command.
+ *
+ * @author yl-ang
+ */
 public class UpdateCommand extends Command {
 
     private boolean isExit = false;

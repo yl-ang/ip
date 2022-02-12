@@ -138,15 +138,15 @@ the task list. The TASKNUMBER must be a positive integer 1,2,3, ...
 * The date supplied must be in the format YYYY-MM-DD.
 
 Example of usage:
-```update 1 d/CS3230 Assingment 5 t/2022-02-13```
-```update 1 t/2022-02-13 d/CS3230 Assingment 5```
-```update 1 d/CS3230 Assingment 5```
+```update 1 d/CS3230 Assignment 5 t/2022-02-13```
+```update 1 t/2022-02-13 d/CS3230 Assignment 5```
+```update 1 d/CS3230 Assignment 5```
 ```update 1 t/2022-02-13```
 
 Expected outcome:
 ```
 I've updated this task:
-[D][] CS3230 Assingment 5 (by: 2022-02-13)
+[D][] CS3230 Assignment 5 (by: 2022-02-13)
 ```
 
 

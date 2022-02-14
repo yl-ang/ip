@@ -24,7 +24,13 @@ public class Event extends Task {
      */
     public Event(String description, String at) {
         super(description);
-        this.at = LocalDate.parse(at);
+
+        try {
+            this.at = LocalDate.parse(at);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(ErrorString.ERROR_INVALID_EVENT_DATE_FORMAT.toString());
+        }
+
     }
 
     /**

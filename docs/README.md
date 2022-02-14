@@ -1,12 +1,14 @@
 # User Guide
 
-Duke is a **desktop app** with a **graphical User Interface (GUI)** and a Personal Assistant Chat bot that helps a 
-person to keep track of various things.
+Duke is a **Personal assistant chat-bot desktop application** that can help you to
+keep track of various tasks.
+
+![UI Main](/ip/Ui.png)
 
 ## Table of content
 1. [Quick Start](#quick-start)
-2. [Features](#features)
-3. [Usage](#usage)
+2. [Usage](#usage)
+3. [Command Summary](#command-summary)
 
 ## Quick Start
 1. Ensure that you have ``Java 11`` installed on your Computer.
@@ -17,69 +19,35 @@ person to keep track of various things.
 
 4. Type in the command in the message box and press ```Send``` to send over to Duke.
 Some example commands you can try out:
-* **`list`** : Lists all existing tasks.
-* **`todo`**`iP User Guide` : Adds a todo task `iP User Guide` to Duke.
-* **`deadline`**`user stories for tP /by 2022-02-15` : Adds a deadline task `user stories for tP` to be done
-by `15/02/2022` Duke.
+* **`list`** : Lists all the existing tasks.
+* **`todo`** `iP User Guide` : Adds a task `iP User Guide` to Duke.
+* **`deadline`** `user stories for tP /by 2022-02-15`: Adds a task `user stories for tP` with the following
+deadline on `2022-02-15`
 
-![UI Main](/ip/Ui.png)
-
-5. Refer to the [Features](#features) below for details of each command.
-
-## Features 
-
-### Feature-todo
-
-Allows you to add a todo task.
-
-### Feature-deadline
-
-Allows you to add a deadline task.
-
-### Feature-event
-
-Allows you to add an event task.
-
-### Feature-list
-
-Allows you to list all your current tasks.
-
-### Feature-update
-
-Allows you to update an existing task.
-
-### Feature-mark
-
-Allows you to mark a task as done.
-
-### Feature-unmark
-
-Allows you to undo a marked task.
-
-### Feature-find
-
-Allows you to search for existing tasks based on a keyword.
-
-### Feature-delete
-
-Allows you to delete a task based on a task number.
-
-### Feature-bye
-
-Allows you to exit the application.
 
 ## Usage
 
-### `todo` - Add a todo task.
+**Notes about the command format:**<br>
+* Items in square brackets are optional.<br>
+  e.g. `INDEX [d/DESCRIPTION] [t/DATE]` can be used as `1 d/HELLO` or as `1 d/HELLO t/2022-02-14`.
 
-Adds a todo task with a description into Duke.
 
-Format: `todo [description]`
-* Description of the todo task.
+### Adding a Task: `todo`,`deadline` and `event`
 
-Example of usage: 
+Adds a new task. A task can be a todo, deadline or event task.
 
-`todo preparing for LSM1301 lab`
+Format:<br>
+`todo DESCRIPTION`<br>
+`deadline DESCRIPTION /by DATE`<br>
+`event DESCRIPTION /at DATE`<br>
+* `DESCRIPTION` refers to the description of the task.
+* `DATE` refers to the new date of the task.
+* `DATE` must be in the format YYYY-MM-DD.
+
+Examples:<br>
+`todo preparing for LSM1301 lab`<br>
+`deadline user stories for tP /by 2022-02-15`<br>
+`event GET1020 Midterm /at 2022-02-28`<br>
 
 Expected outcome:
 ```
@@ -88,81 +56,46 @@ Got it. l've added this task:
 Now you have 1 task in the list.
 ```
 
-### `deadline` - Adds a deadline task into Duke.
-
-Adds a deadline task with a description and date to complete the task by into Duke.
-
-Format `deadline [description] [/by date]`
-* Description of the deadline task.
-* The date must be in the format YYYY-MM-DD.
-
-Example of usage:
-
-`deadline user stories for tP /by 2022-02-15`
-
-Expected outcome:
 ```
 Got it. l've added this task:
     [D][] user stories for tP (by:
 2022-02-15)
-Now you have 1 task in the list.
+Now you have 2 task in the list.
 ```
 
-### `event` - Adds an event task into Duke.
-
-Adds an event task with a description and date the event happens at into Duke.
-
-Format `event [description] [/at date]`
-* Description of the event task.
-* The date must be in the format YYYY-MM-DD.
-
-Example of usage:
-
-```event GET1020 Midterm /at 2022-02-28```
-
-Expected outcome:
 ```
 Got it. l've added this task:
     [E][] GET1020 Midterm (at:
 2022-02-28)
-Now you have 1 task in the list.
+Now you have 3 task in the list.
 ```
 
 
-### `list` - Lists all the current tasks in Duke.
+### Listing all the current tasks : `list`
 
-Displays all the tasks the user have currently.
+Shows a list of all the tasks the user currently have.
 
-Format `list`
-
-Example of usage:
-```list```
-
-Expected outcome:
-```
-Here are the tasks in your list:
-1. [E][] GET1020 Midterm (at:
-2022-02-28)
-```
+Format: `list`
 
 
-### `update` - Updates an existing task based on the task number.
+### Updates existing task : `update`
 
-Updates an existing task's description and date.
+Updates an existing task.
 
-Format `update TASKNUMBER [d/Description] [t/date]`
-* Updates the task at the supplied TASKNUMBER. The TASKNUMBER refers to the index number shown in
-the task list. The TASKNUMBER must be a positive integer 1,2,3, ...
-* New description of the task.
+Format `update INDEX [d/DESCRIPTION] [t/DATE]`
+* Updates the task at the specified `INDEX`. The INDEX refers to the index number shown in
+the displayed list. The index **must be a positive integer** 1,2,3, ...
 * Existing values will be updated to the input values.
 * At least one of the optional fields must be provided.
-* The date supplied must be in the format YYYY-MM-DD.
+* `DESCRIPTION` refers to the new description of the task.
+* `DATE` field is optional and only can be used on `deadline` and `event` tasks.
+* `DATE` refers to the new date of the task.
+* `DATE` supplied must be in the format YYYY-MM-DD.
 
-Example of usage:
-```update 1 d/CS3230 Assignment 5 t/2022-02-13```
-```update 1 t/2022-02-13 d/CS3230 Assignment 5```
-```update 1 d/CS3230 Assignment 5```
-```update 1 t/2022-02-13```
+Examples:<br>
+```update 1 d/CS3230 Assignment 5 t/2022-02-13```<br>
+```update 1 d/CS3230 Assignment 5```<br>
+```update 1 t/2022-02-13```<br>
 
 Expected outcome:
 ```
@@ -171,18 +104,16 @@ I've updated this task:
 ```
 
 
-### `mark` - Mark an existing task as done based on the task number.
+### Mark a task as done: `mark`
 
 Mark an existing task as done with a cross.
 
-Format `mark TASKNUMBER`
-* Mark the task at the supplied TASKNUMBER as done if it is not done. The TASKNUMBER refers to 
-the index number shown in the task list. The TASKNUMBER must be a positive integer 1,2,3,...
+Format `mark INDEX`
+* Mark the task at the specified `INDEX` as done. The INDEX refers to  the index number shown in the task list.
+The index **must be a positive integer** 1,2,3, ...
 
-Example of usage:
-```
-mark 1
-```
+Example:<br>
+`mark 1`
 
 Expected outcome:
 ```
@@ -191,18 +122,16 @@ Nice! I've marked this taks as done:
 ```
 
 
-### `unmark` - Unmark an existing done task based on the task number.
+### Undo a marked task: `unmark`
 
 Unmark an existing done task.
 
-Format `unmark TASKNUMBER`
-* unmark the task at the supplied TASKNUMBER. The TASKNUMBER refers to the index number shown in the task list.
-The TASKNUMBER must be a positive integer 1,2,3,...
+Format `unmark INDEX`
+* unmark the task at the specified `INDEX`. The INDEX refers to the index number shown in the task list.
+The index **must be a positive integer** 1,2,3, ...
 
-Example of usage:
-```
-unmark 1
-```
+Example:<br>
+`unmark 1`
 
 Expected outcome:
 ```
@@ -211,17 +140,17 @@ Nice! I've marked this taks as done:
 ```
 
 
-### `find` - Find existing tasks based on the supplied keyword.
+### Locating tasks by keyword: `find`
 
-Find existing tasks based on the supplied search keyword.
+Finds existing tasks whose descriptions contain the given keyword.
 
 Format `find KEYWORD`
-* find the tasks based on the supplied KEYWORD.
+* The search is case-sensitive. e.g `CODE` will not match `code`
+* Only one `KEYWORD` is to be supplied. e.g if `CS2103 Assignments` is supplied as search keywords,
+only `CS2103` be used in searching for the tasks.
 
-Example of usage:
-```
-find GET1020
-```
+Example:<br>
+`find GET1020`
 
 Expected outcome:
 ```
@@ -231,37 +160,36 @@ Here are the matching tasks in your list:
 ```
 
 
-### `delete` - Delete an existing task based on the task number.
+### Delete a task: `delete`.
 
-Delete an existing task based on the task number.
+Delete the specified task from Duke.
 
-Format `Delete TASKNUMBER`
-* Delete the task at the supplied TASKNUMBER. The TASKNUMBER refers to the index number shown in
-  the task list. The TASKNUMBER must be a positive integer 1,2,3, ...
+Format `Delete INDEX`
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the list displayed from running `list`.
+* The index **must be a positive integer** 1,2,3, ...
 
-Example of usage:
-```
-delete 1
-```
-
-Expected outcome:
-```
-Noted. I've removed this task:
-    [T][X] CS3230 Assignment 5.
-Now you have 1 tasks in the list.
-```
+Example:<br>
+```list``` followed by ```delete 1``` deletes the 1st task in Duke.
 
 
-### `bye` - Exists the application.
+### Exiting the application: `bye`
 
 Exits the application.
 
 Format `bye`
 
-Example of usage:
-```
-bye
-```
 
-Expected outcome:
-* Application window closes.
+## Command Summary
+Action | Format, Examples
+--------|------------------
+**todo** | `todo DESCRIPTION` <br> e.g. `todo CS2101 OP2 Slides`
+**deadline** | `deadline DESCRIPTION /by DATE` <br> e.g. `deadline CS2105 Assignment 1 /by 2022-02-19`
+**event** | `event DESCRIPTION /at DATE` <br> e.g. `event DCTF /at 2022-02-13`
+**list** | `list`
+**update** | `update INDEX [d/DESCRIPTION] [t/DATE]` <br> e.g. `update 1 d/CS3230 Assignment 5 t/2022-02-13` `update 1 d/CS3230 Assignment 5` `update 1 t/2022-02-13`
+**mark** | `mark INDEX` <br> e.g. `mark 1`
+**unmark** | `unmark INDEX` <br> e.g. `unmark 1`
+**find** | `find KEYWORD` <br> e.g. `find CS2103` `find CS2105`
+**delete** | `delete INDEX` <br> e.g. `delete 1`
+**bye** | `bye`

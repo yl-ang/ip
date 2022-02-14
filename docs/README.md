@@ -118,13 +118,13 @@ Example:<br>
 Expected outcome:
 ```
 Nice! I've marked this taks as done:
-[D][X] CS3230 Assingment 5 (by: 2022-02-13)
+[D][X] CS3230 Assignment 5 (by: 2022-02-13)
 ```
 
 
 ### Undo a marked task: `unmark`
 
-Unmark an existing done task.
+Unmark an existing done task by removing the cross.
 
 Format `unmark INDEX`
 * unmark the task at the specified `INDEX`. The INDEX refers to the index number shown in the task list.
@@ -136,7 +136,7 @@ Example:<br>
 Expected outcome:
 ```
 Nice! I've marked this taks as done:
-[D][] CS3230 Assingment 5 (by: 2022-02-13)
+[D][] CS3230 Assignment 5 (by: 2022-02-13)
 ```
 
 
@@ -147,7 +147,7 @@ Finds existing tasks whose descriptions contain the given keyword.
 Format `find KEYWORD`
 * The search is case-sensitive. e.g `CODE` will not match `code`
 * Only one `KEYWORD` is to be supplied. e.g if `CS2103 Assignments` is supplied as search keywords,
-only `CS2103` be used in searching for the tasks.
+only `CS2103` be used in searching of the tasks.
 
 Example:<br>
 `find GET1020`
@@ -181,15 +181,15 @@ Format `bye`
 
 
 ## Command Summary
-Action | Format, Examples
---------|------------------
-**todo** | `todo DESCRIPTION` <br> e.g. `todo CS2101 OP2 Slides`
-**deadline** | `deadline DESCRIPTION /by DATE` <br> e.g. `deadline CS2105 Assignment 1 /by 2022-02-19`
-**event** | `event DESCRIPTION /at DATE` <br> e.g. `event DCTF /at 2022-02-13`
-**list** | `list`
-**update** | `update INDEX [d/DESCRIPTION] [t/DATE]` <br> e.g. `update 1 d/CS3230 Assignment 5 t/2022-02-13` `update 1 d/CS3230 Assignment 5` `update 1 t/2022-02-13`
-**mark** | `mark INDEX` <br> e.g. `mark 1`
-**unmark** | `unmark INDEX` <br> e.g. `unmark 1`
-**find** | `find KEYWORD` <br> e.g. `find CS2103` `find CS2105`
-**delete** | `delete INDEX` <br> e.g. `delete 1`
-**bye** | `bye`
+| Action       | Format, Examples                                                                                                                                         |
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **todo**     | `todo DESCRIPTION` <br> e.g. `todo CS2101 OP2 Slides`                                                                                                    |
+| **deadline** | `deadline DESCRIPTION /by DATE` <br> e.g. `deadline CS2105 Assignment 1 /by 2022-02-19`                                                                  |
+| **event**    | `event DESCRIPTION /at DATE` <br> e.g. `event DCTF /at 2022-02-13`                                                                                       |
+| **list**     | `list`                                                                                                                                                   |
+| **update**   | `update INDEX [d/DESCRIPTION] [t/DATE]` <br> e.g. `update 1 d/CS3230 Assignment 5 t/2022-02-13` `update 1 d/CS3230 Assignment 5` `update 1 t/2022-02-13` |
+| **mark**     | `mark INDEX` <br> e.g. `mark 1`                                                                                                                          |
+| **unmark**   | `unmark INDEX` <br> e.g. `unmark 1`                                                                                                                      |
+| **find**     | `find KEYWORD` <br> e.g. `find CS2103` `find CS2105`                                                                                                     |
+| **delete**   | `delete INDEX` <br> e.g. `delete 1`                                                                                                                      |
+| **bye**      | `bye`                                                                                                                                                    |
